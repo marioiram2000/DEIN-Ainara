@@ -65,50 +65,9 @@ public class GestionAeropuertos extends JFrame {
 	private void changeTable(String config) throws SQLException {
 		ResultSet rs;
 		if(config.equals("publico")) {
-			rs = dao.getAeropuertosPublicos();
 			
-			while(rs.next()) {
-				ArrayList row = new ArrayList();
-				row.add(rs.getInt("aeropuertos.id")+"");
-				row.add(rs.getString("aeropuertos.nombre"));
-				row.add(rs.getInt("aeropuertos.anio_inauguracion")+"");
-				row.add(rs.getInt("aeropuertos.capacidad")+"");
-				row.add(rs.getInt("aeropuertos.id_direccion")+"");
-				row.add(rs.getInt("aeropuertos_publicos.id_aeropuerto")+"");
-				row.add(rs.getFloat("aeropuertos_publicos.financiacion")+"");
-				row.add(rs.getInt("aeropuertos_publicos.num_trabajadores")+"");
-				row.add(rs.getInt("direcciones.id")+"");
-				row.add(rs.getString("direcciones.pais"));
-				row.add(rs.getString("direcciones.ciudad"));
-				row.add(rs.getString("direcciones.calle"));
-				row.add(rs.getInt("direcciones.numero")+"");
-				data.add(row.toArray());
-				/*System.out.print(rs.getInt("aeropuertos.id"));System.out.print(rs.getString("aeropuertos.nombre"));System.out.print(rs.getInt("aeropuertos.anio_inauguracion"));System.out.print(rs.getInt("aeropuertos.capacidad"));System.out.print(rs.getInt("aeropuertos.id_direccion"));System.out.print(rs.getInt("aeropuertos_publicos.id_aeropuerto"));System.out.print(rs.getFloat("aeropuertos_publicos.financiacion"));System.out.print(rs.getInt("aeropuertos_publicos.num_trabajadores"));System.out.print(rs.getInt("direcciones.id"));System.out.print(rs.getString("direcciones.pais"));System.out.print(rs.getString("direcciones.ciudad"));System.out.print(rs.getString("direcciones.calle"));System.out.print(rs.getInt("direcciones.numero"));System.out.println();*/
-			}
-			Object[][] data = new Object[rs][1];
-			table.setModel(new DefaultTableModel(
-					data.toArray(),
-					new String[] {
-						"Nombre", "Especie", "Raza", "Sexo", "Edad", "Peso", "Observaciones", "Fecha"
-					}
-				));
 		}else {
-			rs = dao.getAeropuertosPrivados();
-			while(rs.next()) {
-				System.out.print(rs.getInt("aeropuertos.id"));
-				System.out.print(rs.getString("aeropuertos.nombre"));
-				System.out.print(rs.getInt("aeropuertos.anio_inauguracion"));
-				System.out.print(rs.getInt("aeropuertos.capacidad"));
-				System.out.print(rs.getInt("aeropuertos.id_direccion"));
-				System.out.print(rs.getInt("aeropuertos_privados.id_aeropuerto"));
-				System.out.print(rs.getFloat("aeropuertos_privados.numero_socios"));
-				System.out.print(rs.getInt("direcciones.id"));
-				System.out.print(rs.getString("direcciones.pais"));
-				System.out.print(rs.getString("direcciones.ciudad"));
-				System.out.print(rs.getString("direcciones.calle"));
-				System.out.print(rs.getInt("direcciones.numero"));
-				System.out.println();
-			}
+			
 			
 		}
 	}
