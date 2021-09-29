@@ -29,6 +29,19 @@ public class ConexionDB {
         Statement statement = this.conexion.createStatement();
         return statement.executeQuery(SQL);
     }
+    
+    public ResultSet insert(String sql) {
+    	try {
+    		Statement statement = this.conexion.createStatement();
+    		statement.executeUpdate(sql);
+    		if(statement.getUpdateCount()>0) {
+    			return statement.getGeneratedKeys();
+    		}
+    	}catch (SQLException e){
+    		return null;
+    	}
+    	return null;
+    }
 
     public void cerrarConexion() throws SQLException {
         this.conexion.close();

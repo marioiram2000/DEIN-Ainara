@@ -1,11 +1,14 @@
 package ej5;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ej5.DAO.UsuarioDAO;
+import ej5.model.Usuario;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
@@ -13,12 +16,15 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField username;
 	private JTextField password;
@@ -43,6 +49,11 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		dibujar();
+	}
+	
+	private void dibujar() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 455, 218);
 		contentPane = new JPanel();
@@ -109,6 +120,26 @@ public class Login extends JFrame {
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Entrar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String nombre = username.getText();
+				String pass = password.getText();
+				Usuario usuario = new Usuario(nombre,pass);
+				UsuarioDAO usuarioDao = new UsuarioDAO();
+				if (usuarioDao.validLogin(usuario)) {
+					
+					try {
+						GestionAeropuertos ga = new GestionAeropuertos();
+						ga.setVisible(true);
+						dispose();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
 		panel_1.add(btnNewButton_1);
 	}
 

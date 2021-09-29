@@ -7,8 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
-import ej5.DAO.DAO;
+import ej5.DAO.AeropuertosDAO;
+import ej5.model.AeropuertoPrivado;
+import ej5.model.AeropuertoPublico;
 
 import javax.swing.JToolBar;
 import javax.swing.JButton;
@@ -31,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.JTable;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.TableModelListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -42,7 +46,8 @@ public class GestionAeropuertos extends JFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTable table;
 	private JRadioButton rdbtnPublicos;
-	private static DAO dao;
+	private static AeropuertosDAO aeropuertosDAO;
+	private JRadioButton rdbtnPrivados;
 	
 	/**
 	 * Launch the application.
@@ -52,7 +57,7 @@ public class GestionAeropuertos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					dao = new DAO();
+					aeropuertosDAO = new AeropuertosDAO();
 					GestionAeropuertos frame = new GestionAeropuertos();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -62,21 +67,12 @@ public class GestionAeropuertos extends JFrame {
 		});
 	}
 
-	private void changeTable(String config) throws SQLException {
-		ResultSet rs;
-		if(config.equals("publico")) {
-			
-		}else {
-			
-			
-		}
+	public GestionAeropuertos() throws SQLException {
+		dibujar();
+		eventos();
 	}
 	
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
-	public GestionAeropuertos() throws SQLException {
+	private void dibujar() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -124,17 +120,8 @@ public class GestionAeropuertos extends JFrame {
 		gbc_lblListadoDeAeropuertos.gridy = 0;
 		contentPane.add(lblListadoDeAeropuertos, gbc_lblListadoDeAeropuertos);
 		
-		JRadioButton rdbtnPrivados = new JRadioButton("Privados");
-		rdbtnPrivados.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					changeTable("privado");
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
+		rdbtnPrivados = new JRadioButton("Privados");
+		
 		buttonGroup.add(rdbtnPrivados);
 		GridBagConstraints gbc_rdbtnPrivados = new GridBagConstraints();
 		gbc_rdbtnPrivados.insets = new Insets(0, 0, 5, 5);
@@ -143,16 +130,7 @@ public class GestionAeropuertos extends JFrame {
 		contentPane.add(rdbtnPrivados, gbc_rdbtnPrivados);
 		
 		rdbtnPublicos = new JRadioButton("Publicos");
-		rdbtnPublicos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					changeTable("publico");
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
+		
 		buttonGroup.add(rdbtnPublicos);
 		GridBagConstraints gbc_rdbtnPublicos = new GridBagConstraints();
 		gbc_rdbtnPublicos.insets = new Insets(0, 0, 5, 5);
@@ -186,10 +164,75 @@ public class GestionAeropuertos extends JFrame {
 		gbc_table.gridy = 2;
 		contentPane.add(table, gbc_table);
 		
-		
 		table = new JTable();
 		table.setColumnSelectionAllowed(true);
+	}
+	
+	private void eventos() {
+		rdbtnPublicos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					changeTable("publico");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		
+		rdbtnPrivados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					changeTable("privado");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	private void changeTable(String config) throws SQLException {
+		if(config.equals("publico")) {
+			ArrayList<AeropuertoPublico> aeropuertos = aeropuertosDAO.getAeropuertosPublicos();
+			String[] headers =  AeropuertoPublico.getCampos();
+			Object[][] data = new Object[aeropuertos.size()][headers.length];
+			int i = 0;
+			for (AeropuertoPublico aeropuerto : aeropuertos) {
+				Object[] row = new Object[headers.length];
+				row[0] = aeropuerto.getNombre();
+				row[1] = aeropuerto.getAnio_inauguracion();
+				row[2] = aeropuerto.getCapacidad();
+				row[3] = aeropuerto.getFinanciacion();
+				row[4] = aeropuerto.getNum_trabajadores();
+				row[5] = aeropuerto.getPais();
+				row[6] = aeropuerto.getCiudad();
+				row[7] = aeropuerto.getCalle();
+				row[8] = aeropuerto.getNumero();
+				data[i] = row;
+				i++;
+			}
+			table.setModel(new DefaultTableModel(data, headers));
+		}else {
+			ArrayList<AeropuertoPrivado> aeropuertos = aeropuertosDAO.getAeropuertosPrivados();
+			String[] headers =  AeropuertoPublico.getCampos();
+			Object[][] data = new Object[aeropuertos.size()][headers.length];
+			int i = 0;
+			for (AeropuertoPrivado aeropuerto : aeropuertos) {
+				Object[] row = new Object[headers.length];
+				row[0] = aeropuerto.getNombre();
+				row[1] = aeropuerto.getAnio_inauguracion();
+				row[2] = aeropuerto.getCapacidad();
+				row[3] = aeropuerto.getNumero_socios();
+				row[4] = aeropuerto.getPais();
+				row[5] = aeropuerto.getCiudad();
+				row[6] = aeropuerto.getCalle();
+				row[7] = aeropuerto.getNumero();
+				data[i] = row;
+				i++;
+			}
+			table.setModel(new DefaultTableModel(data, headers));
+		}
 	}
 
 }

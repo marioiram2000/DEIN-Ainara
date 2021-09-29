@@ -115,5 +115,9 @@ public class AeropuertoPrivado {
 		this.numero = numero;
 	}
 	
+	public static String[] getCampos() {
+		String[] campos = {"nombre", "anio_inauguracion", "capacidad", "numero_socios", "pais", "ciudad", "calle", "numero"};
+		return campos;
+	}
 	
 }

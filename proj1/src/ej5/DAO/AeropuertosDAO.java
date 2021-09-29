@@ -7,17 +7,17 @@ import ej5.conexion.ConexionDB;
 import ej5.model.AeropuertoPrivado;
 import ej5.model.AeropuertoPublico;
 
-public class DAO {
+public class AeropuertosDAO {
 
 	private ConexionDB con;
 
 	
-	public DAO() throws SQLException {
-		con = new ConexionDB();
+	public AeropuertosDAO() throws SQLException {
+		
 	}
 
 	public ArrayList<AeropuertoPublico> getAeropuertosPublicos() throws SQLException {
-		//System.out.println("on getAeropuertosPublicos");
+		con = new ConexionDB();
 		ResultSet rs = con.ejecutarConsulta(
 				"SELECT * \n" + 
 				"FROM aeropuertos, aeropuertos_publicos, direcciones \n" + 
@@ -39,10 +39,12 @@ public class DAO {
 					rs.getInt("direcciones.numero"));
 			data.add(aeropuerto);
 		}
+		con.cerrarConexion();
 		return data;
 	}
 	
 	public ArrayList<AeropuertoPrivado> getAeropuertosPrivados() throws SQLException {
+		con = new ConexionDB();
 		ResultSet rs = con.ejecutarConsulta(
 				"SELECT * \n" + 
 				"FROM aeropuertos, aeropuertos_privados, direcciones\n" + 
@@ -65,8 +67,14 @@ public class DAO {
 					rs.getInt("direcciones.numero"));
 			data.add(aeropuerto);
 		}
-		
+		con.cerrarConexion();
 		return data;
+	}
+	
+	public boolean insertAeropuertoPrivado(AeropuertoPrivado a) {
+		String sql = "insert into ";
+		
+		return false;
 	}
 	
 	public ResultSet getDireccion(String id) throws SQLException {

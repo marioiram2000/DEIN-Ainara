@@ -80,12 +80,12 @@ public class ej1 extends JFrame {
 	private void dibujar() {
 		setBounds(100, 100, 568, 483);
 		JPanel contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(25, 25, 25, 25));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 128, 128, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 74, 72, 0, 150, 43, 0};
-		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
@@ -109,7 +109,7 @@ public class ej1 extends JFrame {
 		
 		JLabel lblNhermanos = new JLabel("NºHermanos:");
 		GridBagConstraints gbc_lblNhermanos = new GridBagConstraints();
-		gbc_lblNhermanos.anchor = GridBagConstraints.WEST;
+		gbc_lblNhermanos.anchor = GridBagConstraints.EAST;
 		gbc_lblNhermanos.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNhermanos.gridx = 0;
 		gbc_lblNhermanos.gridy = 1;
@@ -141,6 +141,8 @@ public class ej1 extends JFrame {
 		contentPane.add(comboBox, gbc_comboBox);
 		
 		JPanel panel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+		flowLayout.setHgap(75);
 		panel.setBorder(new TitledBorder(null, "Sexo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
@@ -221,6 +223,8 @@ public class ej1 extends JFrame {
 		panel_2.add(lblVerTele, gbc_lblVerTele);
 		
 		slider_1 = new JSlider();
+		slider_1.setToolTipText("ddddddd");
+		slider_1.setMajorTickSpacing(1);
 		slider_1.setSnapToTicks(true);
 		slider_1.setMinorTickSpacing(1);
 		slider_1.setMinimum(1);
