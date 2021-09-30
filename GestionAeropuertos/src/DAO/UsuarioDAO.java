@@ -1,10 +1,10 @@
-package ej5.DAO;
+package DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ej5.conexion.ConexionDB;
-import ej5.model.Usuario;
+import conexion.ConexionDB;
+import model.Usuario;
 
 public class UsuarioDAO {
 

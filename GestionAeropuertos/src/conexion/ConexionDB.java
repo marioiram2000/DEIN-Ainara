@@ -1,4 +1,4 @@
-package ej5.conexion;
+package conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

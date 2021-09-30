@@ -1,30 +1,27 @@
-package ej5.model;
+package model;
 
-public class AeropuertoPublico {
+public class AeropuertoPrivado {
 
 	private int id;
 	private String nombre;
 	private int anio_inauguracion;
 	private int capacidad;
 	private int id_direccion;
-	private float financiacion;
-	private int num_trabajadores;
+	private float numero_socios;
 	private String pais;
 	private String ciudad;
 	private String calle;
 	private int numero;
 	
-	public AeropuertoPublico(int id, String nombre, int anio_inauguracion, int capacidad, int id_direccion,
-			float financiacion, int num_trabajadores, String pais, String ciudad, String calle,
-			int numero) {
+	public AeropuertoPrivado(int id, String nombre, int anio_inauguracion, int capacidad, int id_direccion,
+			float numero_socios, String pais, String ciudad, String calle, int numero) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.anio_inauguracion = anio_inauguracion;
 		this.capacidad = capacidad;
 		this.id_direccion = id_direccion;
-		this.financiacion = financiacion;
-		this.num_trabajadores = num_trabajadores;
+		this.numero_socios = numero_socios;
 		this.pais = pais;
 		this.ciudad = ciudad;
 		this.calle = calle;
@@ -33,10 +30,9 @@ public class AeropuertoPublico {
 
 	@Override
 	public String toString() {
-		return "AeropuertoPublico [id=" + id + ", nombre=" + nombre + ", anio_inauguracion=" + anio_inauguracion
-				+ ", capacidad=" + capacidad + ", id_direccion=" + id_direccion
-				+ ", financiacion=" + financiacion + ", num_trabajadores=" + num_trabajadores + ", pais=" + pais
-				+ ", ciudad=" + ciudad + ", calle=" + calle + ", numero=" + numero + "]";
+		return "AeropuertoPrivado [id=" + id + ", nombre=" + nombre + ", anio_inauguracion=" + anio_inauguracion
+				+ ", capacidad=" + capacidad + ", id_direccion=" + id_direccion + ", numero_socios=" + numero_socios
+				+ ", pais=" + pais + ", ciudad=" + ciudad + ", calle=" + calle + ", numero=" + numero + "]";
 	}
 
 	public int getId() {
@@ -79,20 +75,12 @@ public class AeropuertoPublico {
 		this.id_direccion = id_direccion;
 	}
 
-	public float getFinanciacion() {
-		return financiacion;
+	public float getNumero_socios() {
+		return numero_socios;
 	}
 
-	public void setFinanciacion(float financiacion) {
-		this.financiacion = financiacion;
-	}
-
-	public int getNum_trabajadores() {
-		return num_trabajadores;
-	}
-
-	public void setNum_trabajadores(int num_trabajadores) {
-		this.num_trabajadores = num_trabajadores;
+	public void setNumero_socios(float numero_socios) {
+		this.numero_socios = numero_socios;
 	}
 
 	public String getPais() {
@@ -128,9 +116,8 @@ public class AeropuertoPublico {
 	}
 	
 	public static String[] getCampos() {
-		String[] campos = {"nombre", "anio_inauguracion", "capacidad", "financiacion", "num_trabajadores", "pais", "ciudad", "calle", "numero"};
+		String[] campos = {"nombre", "anio_inauguracion", "capacidad", "numero_socios", "pais", "ciudad", "calle", "numero"};
 		return campos;
 	}
-	
 	
 }

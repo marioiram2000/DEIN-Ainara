@@ -1,4 +1,4 @@
-package ej5;
+package views;
 
 import java.awt.EventQueue;
 
@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ej5.DAO.UsuarioDAO;
-import ej5.model.Usuario;
+import DAO.UsuarioDAO;
+import model.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -49,6 +49,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setTitle("Aviones - Login");
 		dibujar();
 	}
 	

@@ -1,11 +1,11 @@
-package ej5.DAO;
+package DAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ej5.conexion.ConexionDB;
-import ej5.model.AeropuertoPrivado;
-import ej5.model.AeropuertoPublico;
+import conexion.ConexionDB;
+import model.AeropuertoPrivado;
+import model.AeropuertoPublico;
 
 public class AeropuertosDAO {
 
@@ -37,6 +37,7 @@ public class AeropuertosDAO {
 					rs.getString("direcciones.ciudad"),
 					rs.getString("direcciones.calle"),
 					rs.getInt("direcciones.numero"));
+			//System.out.println(aeropuerto.toString());
 			data.add(aeropuerto);
 		}
 		con.cerrarConexion();

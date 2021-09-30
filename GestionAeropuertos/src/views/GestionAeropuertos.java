@@ -1,4 +1,4 @@
-package ej5;
+package views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -9,9 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import ej5.DAO.AeropuertosDAO;
-import ej5.model.AeropuertoPrivado;
-import ej5.model.AeropuertoPublico;
+import DAO.AeropuertosDAO;
+import model.AeropuertoPrivado;
+import model.AeropuertoPublico;
 
 import javax.swing.JToolBar;
 import javax.swing.JButton;
@@ -48,6 +48,7 @@ public class GestionAeropuertos extends JFrame {
 	private JRadioButton rdbtnPublicos;
 	private static AeropuertosDAO aeropuertosDAO;
 	private JRadioButton rdbtnPrivados;
+	private DefaultTableModel modelo;
 	
 	/**
 	 * Launch the application.
@@ -68,8 +69,10 @@ public class GestionAeropuertos extends JFrame {
 	}
 
 	public GestionAeropuertos() throws SQLException {
+		setTitle("Aviones - Gestion Aeropuertos");
 		dibujar();
 		eventos();
+		changeTable("privados");
 	}
 	
 	private void dibujar() {
@@ -121,6 +124,7 @@ public class GestionAeropuertos extends JFrame {
 		contentPane.add(lblListadoDeAeropuertos, gbc_lblListadoDeAeropuertos);
 		
 		rdbtnPrivados = new JRadioButton("Privados");
+		rdbtnPrivados.setSelected(true);
 		
 		buttonGroup.add(rdbtnPrivados);
 		GridBagConstraints gbc_rdbtnPrivados = new GridBagConstraints();
@@ -163,8 +167,6 @@ public class GestionAeropuertos extends JFrame {
 		gbc_table.gridx = 0;
 		gbc_table.gridy = 2;
 		contentPane.add(table, gbc_table);
-		
-		table = new JTable();
 		table.setColumnSelectionAllowed(true);
 	}
 	
@@ -193,31 +195,36 @@ public class GestionAeropuertos extends JFrame {
 	}
 	
 	private void changeTable(String config) throws SQLException {
+		modelo = new DefaultTableModel() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		table.setModel(modelo);
 		if(config.equals("publico")) {
 			ArrayList<AeropuertoPublico> aeropuertos = aeropuertosDAO.getAeropuertosPublicos();
-			String[] headers =  AeropuertoPublico.getCampos();
-			Object[][] data = new Object[aeropuertos.size()][headers.length];
-			int i = 0;
+			String[] headers =  AeropuertoPublico.getCampos();			
+			modelo.setColumnIdentifiers(headers);
+			modelo.addRow(headers);
 			for (AeropuertoPublico aeropuerto : aeropuertos) {
-				Object[] row = new Object[headers.length];
-				row[0] = aeropuerto.getNombre();
-				row[1] = aeropuerto.getAnio_inauguracion();
-				row[2] = aeropuerto.getCapacidad();
-				row[3] = aeropuerto.getFinanciacion();
-				row[4] = aeropuerto.getNum_trabajadores();
-				row[5] = aeropuerto.getPais();
-				row[6] = aeropuerto.getCiudad();
-				row[7] = aeropuerto.getCalle();
-				row[8] = aeropuerto.getNumero();
-				data[i] = row;
-				i++;
+				String[] row = new String[headers.length];
+				row[0] = aeropuerto.getNombre()+"";
+				row[1] = aeropuerto.getAnio_inauguracion()+"";
+				row[2] = aeropuerto.getCapacidad()+"";
+				row[3] = aeropuerto.getFinanciacion()+"";
+				row[4] = aeropuerto.getNum_trabajadores()+"";
+				row[5] = aeropuerto.getPais()+"";
+				row[6] = aeropuerto.getCiudad()+"";
+				row[7] = aeropuerto.getCalle()+"";
+				row[8] = aeropuerto.getNumero()+"";
+				modelo.addRow(row);
 			}
-			table.setModel(new DefaultTableModel(data, headers));
 		}else {
 			ArrayList<AeropuertoPrivado> aeropuertos = aeropuertosDAO.getAeropuertosPrivados();
 			String[] headers =  AeropuertoPublico.getCampos();
-			Object[][] data = new Object[aeropuertos.size()][headers.length];
-			int i = 0;
+			modelo.setColumnIdentifiers(headers);
+			modelo.addRow(headers);
 			for (AeropuertoPrivado aeropuerto : aeropuertos) {
 				Object[] row = new Object[headers.length];
 				row[0] = aeropuerto.getNombre();
@@ -228,11 +235,8 @@ public class GestionAeropuertos extends JFrame {
 				row[5] = aeropuerto.getCiudad();
 				row[6] = aeropuerto.getCalle();
 				row[7] = aeropuerto.getNumero();
-				data[i] = row;
-				i++;
+				modelo.addRow(row);
 			}
-			table.setModel(new DefaultTableModel(data, headers));
 		}
 	}
-
 }

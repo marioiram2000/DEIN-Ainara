@@ -1,4 +1,4 @@
-package ej5.model;
+package model;
 
 public class Usuario {
 
