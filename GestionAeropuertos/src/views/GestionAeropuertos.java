@@ -58,7 +58,7 @@ public class GestionAeropuertos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					aeropuertosDAO = new AeropuertosDAO();
+					
 					GestionAeropuertos frame = new GestionAeropuertos();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -69,6 +69,7 @@ public class GestionAeropuertos extends JFrame {
 	}
 
 	public GestionAeropuertos() throws SQLException {
+		aeropuertosDAO = new AeropuertosDAO();
 		setTitle("Aviones - Gestion Aeropuertos");
 		dibujar();
 		eventos();
@@ -168,6 +169,8 @@ public class GestionAeropuertos extends JFrame {
 		gbc_table.gridy = 2;
 		contentPane.add(table, gbc_table);
 		table.setColumnSelectionAllowed(true);
+		
+		pack();
 	}
 	
 	private void eventos() {
@@ -222,7 +225,7 @@ public class GestionAeropuertos extends JFrame {
 			}
 		}else {
 			ArrayList<AeropuertoPrivado> aeropuertos = aeropuertosDAO.getAeropuertosPrivados();
-			String[] headers =  AeropuertoPublico.getCampos();
+			String[] headers =  AeropuertoPrivado.getCampos();
 			modelo.setColumnIdentifiers(headers);
 			modelo.addRow(headers);
 			for (AeropuertoPrivado aeropuerto : aeropuertos) {
