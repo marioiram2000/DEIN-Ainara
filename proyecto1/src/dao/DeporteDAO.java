@@ -1,5 +1,29 @@
 package dao;
 
-public class DeporteDAO {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import config.ConexionDB;
+import model.Deporte;
+
+public class DeporteDAO {
+	
+	ConexionDB conBD;
+
+	public ArrayList<Deporte> getDeportes() {
+		conBD = new ConexionDB();
+		ArrayList<Deporte> deportes = new ArrayList<Deporte>();
+		try (Connection conexion = conBD.getConexion()){
+			String sql = "SELECT * FROM olimpiadas.Deporte";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}				
+		
+		return deportes;
+	}
 }

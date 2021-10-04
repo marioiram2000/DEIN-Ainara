@@ -13,7 +13,7 @@ public class ConexionDB {
     public ConexionDB() {
     	try {
     		String host = "localhost";
-            String baseDatos = "aeropuertos";
+            String baseDatos = "olimpiadas";
             String usuario = "admin";
             String password = "password";
             String cadenaConexion = "jdbc:mysql://" + host + "/" + baseDatos+ "?serverTimezone=" + TimeZone.getDefault().getID();
@@ -23,28 +23,6 @@ public class ConexionDB {
 			System.out.println("ConexionDB.SQLException: "+e);
 		}
         
-    }
-
-    public ResultSet ejecutarConsulta(String SQL) throws SQLException {
-        Statement statement = this.conexion.createStatement();
-        return statement.executeQuery(SQL);
-    }
-    
-    public ResultSet insert(String sql) {
-    	try {
-    		Statement statement = this.conexion.createStatement();
-    		statement.executeUpdate(sql);
-    		if(statement.getUpdateCount()>0) {
-    			return statement.getGeneratedKeys();
-    		}
-    	}catch (SQLException e){
-    		return null;
-    	}
-    	return null;
-    }
-
-    public void cerrarConexion() throws SQLException {
-        this.conexion.close();
     }
 
     public Connection getConexion() {
