@@ -12,18 +12,22 @@ public class DeportistaDAO {
 
 	ConexionDB conBD;
 
-
 	public ArrayList<Deportista> getDeportistas() {
-		conBD = new ConexionDB();
+		//conBD = new ConexionDB();
 		ArrayList<Deportista> deportes = new ArrayList<Deportista>();
-		try (Connection conexion = conBD.getConexion()){
+		try (Connection conexion = ConexionDB.getConexion()){
 			String sql = "SELECT id_deportista, nombre, sexo, peso, altura FROM Deportista";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
 		return deportes;
 	}
+	
+	public void insertDeportes() {
+		
+	}
+	
+	
 }

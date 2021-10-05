@@ -22,7 +22,6 @@ public class OlimpiadaDAO {
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
 		return deportes;

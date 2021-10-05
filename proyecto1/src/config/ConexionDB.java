@@ -8,24 +8,22 @@ import java.sql.Statement;
 import java.util.TimeZone;
 
 public class ConexionDB {
-    private Connection conexion;
+    private static Connection conexion;
     
-    public ConexionDB() {
+    public ConexionDB() {}
+
+    public static Connection getConexion() {
     	try {
     		String host = "localhost";
-            String baseDatos = "olimpiadas";
-            String usuario = "admin";
-            String password = "password";
-            String cadenaConexion = "jdbc:mysql://" + host + "/" + baseDatos+ "?serverTimezone=" + TimeZone.getDefault().getID();
-            conexion = DriverManager.getConnection(cadenaConexion, usuario, password);
-            conexion.setAutoCommit(true);
+    		String baseDatos = "olimpiadas";
+    		String usuario = "admin";
+    		String password = "password";
+    		String cadenaConexion = "jdbc:mysql://" + host + "/" + baseDatos+ "?serverTimezone=" + TimeZone.getDefault().getID();
+    		conexion = DriverManager.getConnection(cadenaConexion, usuario, password);
+    		conexion.setAutoCommit(true);
     	}catch (SQLException e) {
-			System.out.println("ConexionDB.SQLException: "+e);
-		}
-        
-    }
-
-    public Connection getConexion() {
+    		System.out.println("ConexionDB.SQLException: "+e);
+    	}
         return conexion;
     }
 

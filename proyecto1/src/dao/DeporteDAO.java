@@ -20,7 +20,6 @@ public class DeporteDAO {
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
 		
