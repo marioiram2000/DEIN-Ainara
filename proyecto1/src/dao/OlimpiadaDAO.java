@@ -18,7 +18,7 @@ public class OlimpiadaDAO {
 		conBD = new ConexionDB();
 		ArrayList<Olimpiada> deportes = new ArrayList<Olimpiada>();
 		try (Connection conexion = conBD.getConexion();) {
-			String sql = "SELECT * FROM olimpiadas.Olimpiada";
+			String sql = "SELECT id_olimpiada, nombre, anio, temporada, ciudad FROM Olimpiada";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.execute();
 		} catch (SQLException e) {
