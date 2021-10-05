@@ -20,7 +20,7 @@ public class EventoDAO {
 	public ArrayList<Evento> getEquipos() {
 		ArrayList<Evento> deportes = new ArrayList<Evento>();
 		try (Connection conexion = conBD.getConexion()){
-			String sql = "SELECT * FROM olimpiadas.Evento";
+			String sql = "SELECT id_evento, nombre, id_olimpiada, id_deporte FROM Evento";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.execute();
 		} catch (SQLException e) {

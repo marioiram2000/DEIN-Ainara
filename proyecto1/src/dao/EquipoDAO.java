@@ -18,7 +18,7 @@ public class EquipoDAO {
 		conBD = new ConexionDB();
 		ArrayList<Equipo> deportes = new ArrayList<Equipo>();
 		try (Connection conexion = conBD.getConexion()){
-			String sql = "SELECT * FROM olimpiadas.Equipo";
+			String sql = "SELECT id_equipo, nombre, iniciales FROM Equipo";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.execute();
 		} catch (SQLException e) {

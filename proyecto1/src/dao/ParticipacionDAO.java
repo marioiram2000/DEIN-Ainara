@@ -17,7 +17,7 @@ public class ParticipacionDAO {
 		conBD = new ConexionDB();
 		ArrayList<Participacion> deportes = new ArrayList<Participacion>();
 		try (Connection conexion = conBD.getConexion()){
-			String sql = "SELECT * FROM olimpiadas.Participacion";
+			String sql = "SELECT id_deportista, id_evento, id_equipo, edad, medalla FROM Participacion";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.execute();
 		} catch (SQLException e) {
