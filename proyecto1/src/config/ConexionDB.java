@@ -14,20 +14,21 @@ public class ConexionDB {
     
     public ConexionDB() {}
 
-    public static Connection getConexion() {
+    public Connection getConexion() {
     	try {
     		GetPropertyValues pv = new GetPropertyValues();
     		HashMap<String, String> data = pv.getDBInformation();
-    		String host = data.get("localhost");
-    		String baseDatos = data.get("olimpiadas");
-    		String usuario = data.get("admin");
+    		String host = data.get("host");
+    		String baseDatos = data.get("baseDatos");
+    		String usuario = data.get("usuario");
     		String password = data.get("password");
     		String cadenaConexion = "jdbc:mysql://" + host + "/" + baseDatos+ "?serverTimezone=" + TimeZone.getDefault().getID();
     		conexion = DriverManager.getConnection(cadenaConexion, usuario, password);
     		conexion.setAutoCommit(true);
-    	}catch (SQLException e) {
-    		System.out.println("ConexionDB.SQLException: "+e);
     	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

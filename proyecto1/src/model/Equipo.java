@@ -17,5 +17,16 @@ public class Equipo {
 		super();
 	}
 	
+	public static String[] campos() {
+		String[] c = {"id", "nombre", "iniciales"};
+		return c;
+	}
+
+	@Override
+	public String toString() {
+		return "Equipo [id=" + id + ", nombre=" + nombre + ", iniciales=" + iniciales + "]";
+	}
+	
+	
 	
 }

@@ -21,5 +21,17 @@ public class Olimpiada {
 		super();
 	}
 	
+	public static String[] campos() {
+		String[] c = {"id", "nombre", "anio", "temporada", "ciudad"};
+		return c;
+	}
+
+	@Override
+	public String toString() {
+		return "Olimpiada [id=" + id + ", nombre=" + nombre + ", anio=" + anio + ", temporada=" + temporada
+				+ ", ciudad=" + ciudad + "]";
+	}
+	
+	
 	
 }

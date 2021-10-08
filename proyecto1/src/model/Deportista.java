@@ -20,6 +20,17 @@ public class Deportista {
 		super();
 	}
 	
+	public static String[] campos() {
+		String[] c = {"id", "nombre", "sexo", "peso", "altura"};
+		return c;
+	}
+
+	@Override
+	public String toString() {
+		return "Deportista [id=" + id + ", nombre=" + nombre + ", sexo=" + sexo + ", peso=" + peso + ", altura="
+				+ altura + "]";
+	}
+	
 	
 
 }

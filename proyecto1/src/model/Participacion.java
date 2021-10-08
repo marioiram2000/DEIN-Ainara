@@ -21,6 +21,15 @@ public class Participacion {
 		super();
 	}
 	
-	
+	public static String[] campos() {
+		String[] c = {"deportista", "evento", "equipo", "edad", "medalla"};
+		return c;
+	}
+
+	@Override
+	public String toString() {
+		return "Participacion [deportista=" + deportista + ", evento=" + evento + ", equipo=" + equipo + ", edad="
+				+ edad + ", medalla=" + medalla + "]";
+	}
 	
 }

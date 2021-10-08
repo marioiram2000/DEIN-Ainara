@@ -7,9 +7,12 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import config.GetPropertyValues;
 import config.Messages;
+import dao.DeporteDAO;
+import model.Deporte;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -23,6 +26,7 @@ import java.awt.Insets;
 import javax.swing.JTable;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.swing.JLabel;
@@ -32,6 +36,7 @@ public class index extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private DefaultTableModel modelo;
 
 	public static void main(String[] args) throws IOException {
 		GetPropertyValues pv = new GetPropertyValues();
@@ -52,6 +57,53 @@ public class index extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(index.class.getResource("/images/logo.png"))); //$NON-NLS-1$
 		dibujar();
 		gestionarEventos();
+		rellenarTabla("Deporte");
+	}
+
+	private void rellenarTabla(String tabla) {
+		modelo = new DefaultTableModel() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setModel(modelo);
+		ArrayList<Deporte> data;
+		switch (tabla) {
+		case "Deporte":
+			String[] headers = Deporte.campos();
+			modelo.setColumnIdentifiers(headers);
+			modelo.addRow(headers);
+			data = new DeporteDAO().getDeportes();
+			for (Deporte deporte : data) {
+				System.out.println(deporte.toString());
+				String[] row = deporte.getAll();
+				modelo.addRow(row);
+				for (int i = 0; i < row.length; i++) {
+					System.out.println(row[i]);
+				}
+			}
+			break;
+
+		case "Deportista":
+
+			break;
+		case "Equipo":
+
+			break;
+		case "Evento":
+
+			break;
+		case "Olimpiada":
+
+			break;
+		case "Participacione":
+
+			break;
+
+		default:
+			break;
+		}
+
 	}
 
 	private void dibujar() {
@@ -99,6 +151,7 @@ public class index extends JFrame {
 		ButtonGroup bg = new ButtonGroup();
 
 		JRadioButton rdbtnDeportes = new JRadioButton(Messages.getString("index.sports")); //$NON-NLS-1$
+		rdbtnDeportes.setSelected(true);
 		GridBagConstraints gbc_rdbtnDeportes = new GridBagConstraints();
 		gbc_rdbtnDeportes.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnDeportes.gridx = 1;
