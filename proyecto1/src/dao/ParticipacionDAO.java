@@ -34,7 +34,8 @@ public class ParticipacionDAO {
 				ids.add(rs.getInt("id_deporte"));
 			}
 			for (Integer id : ids) {
-				Participacion p = getParticipacion(rs.getInt(""))
+				Participacion p = getParticipacion(rs.getInt("id_deportista"));
+				participaciones.add(p);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
