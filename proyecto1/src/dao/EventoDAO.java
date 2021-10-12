@@ -27,7 +27,7 @@ public class EventoDAO {
 			ResultSet rs = ps.executeQuery();
 			ArrayList<Integer> ids = new ArrayList<Integer>();
 			while (rs.next()) {
-				ids.add(rs.getInt("id_deporte"));
+				ids.add(rs.getInt("id_evento"));
 			}
 			for (Integer id : ids) {
 				Evento e = getEvento(id);

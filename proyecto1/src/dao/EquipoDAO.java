@@ -27,7 +27,7 @@ public class EquipoDAO {
 			ResultSet rs = ps.executeQuery();
 			ArrayList<Integer> ids = new ArrayList<Integer>();
 			while (rs.next()) {
-				ids.add(rs.getInt("id_deporte"));
+				ids.add(rs.getInt("id_equipo"));
 			}
 			for (Integer id : ids) {
 				Equipo e = getEquipo(id);
@@ -42,7 +42,7 @@ public class EquipoDAO {
 	public Equipo getEquipo(int id) {
 		conBD = new ConexionDB();
 		try (Connection conexion = conBD.getConexion();) {
-			String sql = "ELECT id_deportista, nombre, sexo, peso, altura FROM Deportista WHERE id_deportista = ?";
+			String sql = "SELECT id_equipo, nombre, iniciales FROM Equipo WHERE id_equipo = ?";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();

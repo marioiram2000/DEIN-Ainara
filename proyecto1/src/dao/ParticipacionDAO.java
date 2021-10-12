@@ -31,7 +31,7 @@ public class ParticipacionDAO {
 			ResultSet rs = ps.executeQuery();
 			ArrayList<Integer> ids = new ArrayList<Integer>();
 			while (rs.next()) {
-				ids.add(rs.getInt("id_deporte"));
+				ids.add(rs.getInt("id_deportista"));
 			}
 			for (Integer id : ids) {
 				Participacion p = getParticipacion(rs.getInt("id_deportista"));

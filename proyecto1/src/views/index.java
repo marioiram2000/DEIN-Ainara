@@ -11,7 +11,17 @@ import javax.swing.table.DefaultTableModel;
 import config.GetPropertyValues;
 import config.Messages;
 import dao.DeporteDAO;
+import dao.DeportistaDAO;
+import dao.EquipoDAO;
+import dao.EventoDAO;
+import dao.OlimpiadaDAO;
+import dao.ParticipacionDAO;
 import model.Deporte;
+import model.Deportista;
+import model.Equipo;
+import model.Evento;
+import model.Olimpiada;
+import model.Participacion;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -29,6 +39,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class index extends JFrame {
 
@@ -36,6 +48,12 @@ public class index extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel modelo;
+	private JRadioButton rdbtnDeportes;
+	private JRadioButton rdbtnDeportistas;
+	private JRadioButton rdbtnEquipos;
+	private JRadioButton rdbtnEventos;
+	private JRadioButton rdbtnOlimpiadas;
+	private JRadioButton rdbtnParticipaciones;
 
 	public static void main(String[] args) throws IOException {
 		GetPropertyValues pv = new GetPropertyValues();
@@ -66,37 +84,68 @@ public class index extends JFrame {
 			}
 		};
 		table.setModel(modelo);
-		ArrayList<Deporte> data;
+		String[] headers;
 		switch (tabla) {
 		case "Deporte":
-			String[] headers = Deporte.campos();
+			headers = Deporte.campos();
 			modelo.setColumnIdentifiers(headers);
 			modelo.addRow(headers);
-			data = new DeporteDAO().getDeportes();
-			for (Deporte deporte : data) {
-				System.out.println(deporte.toString());
+			ArrayList<Deporte> deportes = new DeporteDAO().getDeportes();
+			for (Deporte deporte : deportes) {
 				String[] row = deporte.getAll();
 				modelo.addRow(row);
-				for (int i = 0; i < row.length; i++) {
-					System.out.println(row[i]);
-				}
 			}
 			break;
 
 		case "Deportista":
-
+			headers = Deportista.campos();
+			modelo.setColumnIdentifiers(headers);
+			modelo.addRow(headers);
+			ArrayList<Deportista> deportistas = new DeportistaDAO().getDeportistas();
+			for (Deportista deportista : deportistas) {
+				String[] row = deportista.getAll();
+				modelo.addRow(row);
+			}
 			break;
 		case "Equipo":
-
+			headers = Equipo.campos();
+			modelo.setColumnIdentifiers(headers);
+			modelo.addRow(headers);
+			ArrayList<Equipo> equipos = new EquipoDAO().getEquipos();
+			for (Equipo equipo : equipos) {
+				String[] row = equipo.getAll();
+				modelo.addRow(row);
+			}
 			break;
 		case "Evento":
-
+			headers = Evento.campos();
+			modelo.setColumnIdentifiers(headers);
+			modelo.addRow(headers);
+			ArrayList<Evento> eventos = new EventoDAO().getEventos();
+			for (Evento evento : eventos) {
+				String[] row = evento.getAll();
+				modelo.addRow(row);
+			}
 			break;
 		case "Olimpiada":
-
+			headers = Olimpiada.campos();
+			modelo.setColumnIdentifiers(headers);
+			modelo.addRow(headers);
+			ArrayList<Olimpiada> olimpiadas = new OlimpiadaDAO().getOlimpiadas();
+			for (Olimpiada olimpiada : olimpiadas) {
+				String[] row = olimpiada.getAll();
+				modelo.addRow(row);
+			}
 			break;
-		case "Participacione":
-
+		case "Participacion":
+			headers = Participacion.campos();
+			modelo.setColumnIdentifiers(headers);
+			modelo.addRow(headers);
+			ArrayList<Participacion> participaciones = new ParticipacionDAO().getParticipaciones();
+			for (Participacion participacion : participaciones) {
+				String[] row = participacion.getAll();
+				modelo.addRow(row);
+			}
 			break;
 
 		default:
@@ -149,7 +198,7 @@ public class index extends JFrame {
 	private void crateRadios() {
 		ButtonGroup bg = new ButtonGroup();
 
-		JRadioButton rdbtnDeportes = new JRadioButton(Messages.getString("index.sports")); //$NON-NLS-1$
+		rdbtnDeportes = new JRadioButton(Messages.getString("index.sports"));
 		rdbtnDeportes.setSelected(true);
 		GridBagConstraints gbc_rdbtnDeportes = new GridBagConstraints();
 		gbc_rdbtnDeportes.insets = new Insets(0, 0, 5, 5);
@@ -158,7 +207,7 @@ public class index extends JFrame {
 		contentPane.add(rdbtnDeportes, gbc_rdbtnDeportes);
 		bg.add(rdbtnDeportes);
 
-		JRadioButton rdbtnDeportistas = new JRadioButton(Messages.getString("index.athletes")); //$NON-NLS-1$
+		rdbtnDeportistas = new JRadioButton(Messages.getString("index.athletes"));
 		GridBagConstraints gbc_rdbtnDeportistas = new GridBagConstraints();
 		gbc_rdbtnDeportistas.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnDeportistas.gridx = 2;
@@ -166,7 +215,7 @@ public class index extends JFrame {
 		contentPane.add(rdbtnDeportistas, gbc_rdbtnDeportistas);
 		bg.add(rdbtnDeportistas);
 
-		JRadioButton rdbtnEquipos = new JRadioButton(Messages.getString("index.teams")); //$NON-NLS-1$
+		rdbtnEquipos = new JRadioButton(Messages.getString("index.teams"));
 		GridBagConstraints gbc_rdbtnEquipos = new GridBagConstraints();
 		gbc_rdbtnEquipos.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnEquipos.gridx = 3;
@@ -174,7 +223,7 @@ public class index extends JFrame {
 		contentPane.add(rdbtnEquipos, gbc_rdbtnEquipos);
 		bg.add(rdbtnEquipos);
 
-		JRadioButton rdbtnEventos = new JRadioButton(Messages.getString("index.events")); //$NON-NLS-1$
+		rdbtnEventos = new JRadioButton(Messages.getString("index.events"));
 		GridBagConstraints gbc_rdbtnEventos = new GridBagConstraints();
 		gbc_rdbtnEventos.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnEventos.gridx = 4;
@@ -182,7 +231,7 @@ public class index extends JFrame {
 		contentPane.add(rdbtnEventos, gbc_rdbtnEventos);
 		bg.add(rdbtnEventos);
 
-		JRadioButton rdbtnOlimpiadas = new JRadioButton(Messages.getString("index.olympics")); //$NON-NLS-1$
+		rdbtnOlimpiadas = new JRadioButton(Messages.getString("index.olympics"));
 		GridBagConstraints gbc_rdbtnOlimpiadas = new GridBagConstraints();
 		gbc_rdbtnOlimpiadas.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnOlimpiadas.gridx = 5;
@@ -190,7 +239,7 @@ public class index extends JFrame {
 		contentPane.add(rdbtnOlimpiadas, gbc_rdbtnOlimpiadas);
 		bg.add(rdbtnOlimpiadas);
 
-		JRadioButton rdbtnParticipaciones = new JRadioButton(Messages.getString("index.participations")); //$NON-NLS-1$
+		rdbtnParticipaciones = new JRadioButton(Messages.getString("index.participations"));
 		GridBagConstraints gbc_rdbtnParticipaciones = new GridBagConstraints();
 		gbc_rdbtnParticipaciones.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnParticipaciones.gridx = 6;
@@ -270,7 +319,41 @@ public class index extends JFrame {
 	}
 
 	private void gestionarEventos() {
-
+		rdbtnDeportes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rellenarTabla("Deporte");
+			}
+		});
+		
+		rdbtnDeportistas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rellenarTabla("Deportista");
+			}
+		});
+		
+		rdbtnEquipos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rellenarTabla("Equipo");
+			}
+		});
+		
+		rdbtnEventos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rellenarTabla("Evento");
+			}
+		});
+		
+		rdbtnOlimpiadas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rellenarTabla("Olimpiada");
+			}
+		});
+		
+		rdbtnParticipaciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rellenarTabla("Participacion");
+			}
+		});
 	}
 
 }

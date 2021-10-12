@@ -24,12 +24,59 @@ public class Deportista {
 		String[] c = {"id", "nombre", "sexo", "peso", "altura"};
 		return c;
 	}
+	
+	public String[] getAll() {
+		String[] all = {id+"", nombre, sexo, peso+"", altura+""};
+		return all;
+	}
 
 	@Override
 	public String toString() {
 		return "Deportista [id=" + id + ", nombre=" + nombre + ", sexo=" + sexo + ", peso=" + peso + ", altura="
 				+ altura + "]";
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public int getPeso() {
+		return peso;
+	}
+
+	public void setPeso(int peso) {
+		this.peso = peso;
+	}
+
+	public int getAltura() {
+		return altura;
+	}
+
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+	
+	
 	
 	
 
