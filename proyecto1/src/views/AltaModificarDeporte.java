@@ -21,29 +21,40 @@ public class AltaModificarDeporte extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private ArrayList<String> selectedTableValues;
-	private final String tabla;
 	private JTextField txtNombre;
+	private JButton okButton;
 
-	public AltaModificarDeporte(String tabla, ArrayList<String> selectedTableValues) {
+	public AltaModificarDeporte() {
 		this.selectedTableValues = selectedTableValues;
-		this.tabla = tabla;
-		setTitle(Messages.getString("index.appTitle")+" - "+Messages.getString("deporte.title"));
+		setTitle(Messages.getString("index.appTitle") + " - " + Messages.getString("deporte.title"));
 		dibujar();
-		gestionarEventos();
+		gestionarEventos1();
 	}
-	
+
+	public AltaModificarDeporte(ArrayList<String> selectedTableValues) {
+		this.selectedTableValues = selectedTableValues;
+		setTitle(Messages.getString("index.appTitle") + " - " + Messages.getString("deporte.title"));
+		dibujar();
+		fillForm();
+		gestionarEventos2();
+	}
+
+	private void fillForm() {
+		txtNombre.setText(selectedTableValues.get(1));
+	}
+
 	private void dibujar() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[] { 0, 0, 0 };
+		gbl_contentPanel.rowHeights = new int[] { 0, 0 };
+		gbl_contentPanel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPanel.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		contentPanel.setLayout(gbl_contentPanel);
-		
+
 		JLabel lblNombreDelDeporte = new JLabel(Messages.getString("deporte.label"));
 		GridBagConstraints gbc_lblNombreDelDeporte = new GridBagConstraints();
 		gbc_lblNombreDelDeporte.insets = new Insets(0, 0, 0, 5);
@@ -51,12 +62,10 @@ public class AltaModificarDeporte extends JDialog {
 		gbc_lblNombreDelDeporte.gridx = 0;
 		gbc_lblNombreDelDeporte.gridy = 0;
 		contentPanel.add(lblNombreDelDeporte, gbc_lblNombreDelDeporte);
-		
+
 		{
 			txtNombre = new JTextField();
-			if(selectedTableValues!=null || selectedTableValues.size()>0) {
-				txtNombre.setText(selectedTableValues.get(0));
-			}
+			System.out.println(selectedTableValues.size());
 			GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 			gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
 			gbc_txtNombre.gridx = 1;
@@ -69,7 +78,7 @@ public class AltaModificarDeporte extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -81,18 +90,13 @@ public class AltaModificarDeporte extends JDialog {
 			}
 		}
 	}
-	
-	private void gestionarEventos() {
+
+	private void gestionarEventos1() {
 		
 	}
-	
-	public ArrayList<String> getSelectedTableValues() {
-		return selectedTableValues;
-	}
-	
-	public void setSelectedTableValues(ArrayList<String> selectedTableValues) {
-		this.selectedTableValues = selectedTableValues ;
+
+	private void gestionarEventos2() {
+
 	}
 
-	
 }

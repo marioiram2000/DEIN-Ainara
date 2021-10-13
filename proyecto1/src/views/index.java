@@ -344,9 +344,9 @@ public class index extends JFrame {
 		String tabla = rdbtnSeleccionado.getText();
 		switch (tabla) {
 		case "Deportes":
-			AltaModificarDeporte dialog = new AltaModificarDeporte(tabla, null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			if(modo.equals("alta")) {				
+			if(modo.equals("alta")) {	
+				AltaModificarDeporte dialog = new AltaModificarDeporte();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}else if(modo.equals("modificar")) {
 				int row = table.getSelectedRow();
@@ -356,7 +356,8 @@ public class index extends JFrame {
 						String value = table.getModel().getValueAt(row, column).toString();
 						selectedTableValues.add(value);
 					}
-					dialog.setSelectedTableValues(selectedTableValues);
+					AltaModificarDeporte dialog = new AltaModificarDeporte(selectedTableValues);
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				}
 			}

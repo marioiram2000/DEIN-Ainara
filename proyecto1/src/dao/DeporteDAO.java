@@ -52,4 +52,49 @@ public class DeporteDAO {
 		}				
 		return null;
 	}
+	
+	public int existDeporte(String name) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {
+			String sql = "SELECT id_deporte, nombre FROM Deporte WHERE nombre = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("id_deporte");
+			}
+			return -1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}				
+		return -1;
+	}
+
+	public void insertDeporte(String nombre) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {
+			if(0<existDeporte(nombre)) {
+				String sql = "insert into olimpiadas.Deporte (nombre) values ('?')";
+				PreparedStatement ps = conexion.prepareStatement(sql);
+				ps.executeUpdate();				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void updateDeporte(String nombre) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {
+			int id = existDeporte(nombre);
+			if(0<id) {
+				String sql = "UPDATE Deporte SET nombre = 'Futbol' WHERE id_deporte = ?";
+				PreparedStatement ps = conexion.prepareStatement(sql);
+				ps.setInt(1, id);
+				ps.executeUpdate();				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
 }
