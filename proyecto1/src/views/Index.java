@@ -373,23 +373,22 @@ public class Index extends JFrame {
 		String tabla = rdbtnSeleccionado.getText();
 		switch (tabla) {
 		case "Deportes":
-			AltaModificarDeporte dialog = null;
+			AltaModificarDeporte dialogDeporte = null;
 			if(modo.equals("alta")) {	
-				dialog = new AltaModificarDeporte();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
+				dialogDeporte = new AltaModificarDeporte();
+				dialogDeporte.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialogDeporte.setVisible(true);
 			}else if(modo.equals("modificar")) {
 				int row = table.getSelectedRow();
 				if(row>0) {
 					String id = table.getModel().getValueAt(row, 0).toString();
-					dialog = new AltaModificarDeporte(id);
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
+					dialogDeporte = new AltaModificarDeporte(id);
+					dialogDeporte.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialogDeporte.setVisible(true);
 				}
 			}
-			if(dialog != null) {
-				dialog.addWindowListener((WindowListener) new WindowAdapter() {
-					@Override
+			if(dialogDeporte != null) {
+				dialogDeporte.addWindowListener((WindowListener) new WindowAdapter() {
 					public void windowClosed(WindowEvent e) {
 						rellenarTabla();
 					}
@@ -399,7 +398,27 @@ public class Index extends JFrame {
 			break;
 
 		case "Deportistas":
-			
+			AltaModificarDeportista dialogDeportista = null;
+			if(modo.equals("alta")) {	
+				dialogDeportista = new AltaModificarDeportista();
+				dialogDeportista.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialogDeportista.setVisible(true);
+			}else if(modo.equals("modificar")) {
+				int row = table.getSelectedRow();
+				if(row>0) {
+					String id = table.getModel().getValueAt(row, 0).toString();
+					dialogDeportista = new AltaModificarDeportista(id);
+					dialogDeportista.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialogDeportista.setVisible(true);
+				}
+			}
+			if(dialogDeportista != null) {
+				dialogDeportista.addWindowListener((WindowListener) new WindowAdapter() {
+					public void windowClosed(WindowEvent e) {
+						rellenarTabla();
+					}
+				});				
+			}
 			break;
 		case "Equipos":
 			

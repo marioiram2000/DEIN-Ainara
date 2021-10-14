@@ -33,6 +33,7 @@ public class AltaModificarDeporte extends JDialog {
 	public AltaModificarDeporte() {
 		setTitle(Messages.getString("index.appTitle") + " - " + Messages.getString("deporte.title"));
 		dibujar();
+		gestionarEventos();
 		gestionarEventosAlta();
 	}
 
@@ -42,6 +43,7 @@ public class AltaModificarDeporte extends JDialog {
 		deporte = new DeporteDAO().getDeporte(Integer.parseInt(selectedId));
 		dibujar();
 		fillForm();
+		gestionarEventos();
 		gestionarEventosModificar();
 	}
 
@@ -95,7 +97,7 @@ public class AltaModificarDeporte extends JDialog {
 			}
 		}
 	}
-	private void gestionarEcentos() {
+	private void gestionarEventos() {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
