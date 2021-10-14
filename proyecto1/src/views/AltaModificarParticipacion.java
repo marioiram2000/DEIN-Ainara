@@ -2,6 +2,8 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 public class AltaModificarParticipacion extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private JButton cancelButton;
+	private JButton okButton;
 
 	public AltaModificarParticipacion() {
 		dibujar();
@@ -27,17 +31,25 @@ public class AltaModificarParticipacion extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	private void gestionarEventos() {
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 	}
 
 }

@@ -8,22 +8,33 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dao.DeportistaDAO;
+import model.Deportista;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
 
 public class AltaModificarDeportista extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldNombre;
-	private JTextField textField_2;
-	private JTextField textField_3;
 	private JRadioButton rdbtnMujer;
 	private JRadioButton rdbtnHombre;
-
+	private JButton okButton;
+	private JButton cancelButton;
+	private JSpinner spinnerPeso;
+	private JSpinner spinnerAltura;
+	private Deportista deportista;
 
 	public AltaModificarDeportista() {
 		dibujar();
@@ -31,19 +42,23 @@ public class AltaModificarDeportista extends JDialog {
 		gestionarEventosAlta();
 	}
 
-
 	public AltaModificarDeportista(String id) {
+		deportista = new DeportistaDAO().getDeportista(Integer.parseInt(id));
 		dibujar();
 		fillForm();
 		gestionarEventos();
 		gestionarEventosModificar();
-
 	}
 
-	
-
 	private void fillForm() {
-		
+		textFieldNombre.setText(deportista.getNombre());
+		if (deportista.getSexo().equals("M")) {
+			rdbtnMujer.setSelected(true);
+		} else {
+			rdbtnHombre.setSelected(true);
+		}
+		spinnerAltura.setValue(deportista.getAltura());
+		spinnerPeso.setValue(deportista.getPeso());
 	}
 
 	private void dibujar() {
@@ -52,10 +67,10 @@ public class AltaModificarDeportista extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[] { 0, 0, 0, 0 };
+		gbl_contentPanel.rowHeights = new int[] { 0, 0, 0, 0, 0 };
+		gbl_contentPanel.columnWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel lblNombre = new JLabel("Nombre");
@@ -113,15 +128,21 @@ public class AltaModificarDeportista extends JDialog {
 			contentPanel.add(lblPeso, gbc_lblPeso);
 		}
 		{
-			textField_2 = new JTextField();
-			GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-			gbc_textField_2.gridwidth = 2;
-			gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-			gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_2.gridx = 1;
-			gbc_textField_2.gridy = 2;
-			contentPanel.add(textField_2, gbc_textField_2);
-			textField_2.setColumns(10);
+			spinnerPeso = new JSpinner(new SpinnerNumberModel(0, 0, 400, 1));
+			GridBagConstraints gbc_spinnerPeso = new GridBagConstraints();
+			gbc_spinnerPeso.insets = new Insets(0, 0, 5, 5);
+			gbc_spinnerPeso.gridx = 1;
+			gbc_spinnerPeso.gridy = 2;
+			contentPanel.add(spinnerPeso, gbc_spinnerPeso);
+		}
+		{
+			JLabel lblKg = new JLabel("Kg");
+			GridBagConstraints gbc_lblKg = new GridBagConstraints();
+			gbc_lblKg.anchor = GridBagConstraints.WEST;
+			gbc_lblKg.insets = new Insets(0, 0, 5, 0);
+			gbc_lblKg.gridx = 2;
+			gbc_lblKg.gridy = 2;
+			contentPanel.add(lblKg, gbc_lblKg);
 		}
 		{
 			JLabel lblAltura = new JLabel("Altura");
@@ -133,27 +154,17 @@ public class AltaModificarDeportista extends JDialog {
 			contentPanel.add(lblAltura, gbc_lblAltura);
 		}
 		{
-			textField_3 = new JTextField();
-			GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-			gbc_textField_3.gridwidth = 2;
-			gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textField_3.gridx = 1;
-			gbc_textField_3.gridy = 3;
-			contentPanel.add(textField_3, gbc_textField_3);
-			textField_3.setColumns(10);
-		}
-		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -163,22 +174,70 @@ public class AltaModificarDeportista extends JDialog {
 			bg.add(rdbtnMujer);
 			bg.add(rdbtnHombre);
 		}
+		{
+			spinnerAltura = new JSpinner(new SpinnerNumberModel(0, 0, 300, 1));
+
+			GridBagConstraints gbc_spinnerAltura = new GridBagConstraints();
+			gbc_spinnerAltura.insets = new Insets(0, 0, 0, 5);
+			gbc_spinnerAltura.gridx = 1;
+			gbc_spinnerAltura.gridy = 3;
+			contentPanel.add(spinnerAltura, gbc_spinnerAltura);
+		}
+		{
+			JLabel lblCm = new JLabel("Cm");
+			GridBagConstraints gbc_lblCm = new GridBagConstraints();
+			gbc_lblCm.anchor = GridBagConstraints.WEST;
+			gbc_lblCm.gridx = 2;
+			gbc_lblCm.gridy = 3;
+			contentPanel.add(lblCm, gbc_lblCm);
+		}
 	}
-	
 
 	private void gestionarEventos() {
-		// TODO Auto-generated method stub
-		
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 	}
-	
+
 	private void gestionarEventosAlta() {
-		// TODO Auto-generated method stub
-		
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Deportista d = new Deportista();
+				d.setNombre(textFieldNombre.getText());
+				if (rdbtnHombre.isSelected()) {
+					d.setSexo("M");
+				} else {
+					d.setSexo("F");
+				}
+				d.setAltura(Integer.parseInt(spinnerAltura.getValue().toString()));
+				d.setPeso(Integer.parseInt(spinnerPeso.getValue().toString()));
+				new DeportistaDAO().insertDeportista(d);
+				
+				dispose();	
+			}
+		});
+
 	}
-	
+
 	private void gestionarEventosModificar() {
-		// TODO Auto-generated method stub
-		
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				deportista.setNombre(textFieldNombre.getText());
+				if (rdbtnHombre.isSelected()) {
+					deportista.setSexo("M");
+				} else {
+					deportista.setSexo("F");
+				}
+				deportista.setAltura(Integer.parseInt(spinnerAltura.getValue().toString()));
+				deportista.setPeso(Integer.parseInt(spinnerPeso.getValue().toString()));
+				new DeportistaDAO().updateDeportista(deportista);
+				
+				dispose();	
+			}
+		});
+
 	}
 
 }

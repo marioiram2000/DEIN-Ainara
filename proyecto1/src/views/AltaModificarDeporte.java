@@ -119,10 +119,9 @@ public class AltaModificarDeporte extends JDialog {
 	private void gestionarEventosModificar() {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
-				if(!deporte.getNombre().equals(txtNombre.getText())) {
-					deporte.setNombre(txtNombre.getText());
-					new DeporteDAO().updateDeporte(deporte);
-				}
+				deporte.setNombre(txtNombre.getText());
+				new DeporteDAO().updateDeporte(deporte);
+				
 				dispose();	
 			}
 		});

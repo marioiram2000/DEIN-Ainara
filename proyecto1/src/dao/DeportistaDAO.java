@@ -60,6 +60,40 @@ public class DeportistaDAO {
 		return null;
 	}
 	
+	public void insertDeportista(Deportista deportista) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "insert into Deporte (nombre, sexo, peso, altura) values (?, ?, ?, ?)";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, deportista.getNombre());
+			ps.setString(2, deportista.getSexo());
+			ps.setInt(3, deportista.getPeso());
+			ps.setInt(4, deportista.getAltura());
+			ps.executeUpdate();				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void updateDeportista(Deportista deportista) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "UPDATE Deportista SET nombre = ?, sexo = ?, peso = ?, altura = ? WHERE id_deportista = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, deportista.getNombre());
+			ps.setString(2, deportista.getSexo());
+			ps.setInt(3, deportista.getPeso());
+			ps.setInt(4, deportista.getAltura());
+			ps.setInt(5, deportista.getId());
+			System.out.println(ps);
+			//ps.executeUpdate();				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	
 	
 	
