@@ -16,7 +16,7 @@ public class DeporteDAO {
 	ConexionDB conBD;
 
 	public ArrayList<Deporte> getDeportes() {
-		ConexionDB conBD = new ConexionDB();
+		conBD = new ConexionDB();
 		ArrayList<Deporte> deportes = new ArrayList<Deporte>();
 		try (Connection conexion = conBD.getConexion()){
 			String sql = "SELECT id_deporte, nombre FROM Deporte";
@@ -52,7 +52,7 @@ public class DeporteDAO {
 		}				
 		return null;
 	}
-	
+	/*
 	public int existDeporte(String name) {
 		conBD = new ConexionDB();
 		try (Connection conexion = conBD.getConexion();) {
@@ -69,32 +69,44 @@ public class DeporteDAO {
 		}				
 		return -1;
 	}
-
+	 */
 	public void insertDeporte(String nombre) {
 		conBD = new ConexionDB();
 		try (Connection conexion = conBD.getConexion();) {
-			if(0<existDeporte(nombre)) {
-				String sql = "insert into olimpiadas.Deporte (nombre) values ('?')";
-				PreparedStatement ps = conexion.prepareStatement(sql);
-				ps.executeUpdate();				
-			}
+			
+			String sql = "insert into Deporte (nombre) values (?)";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, nombre);
+			ps.executeUpdate();				
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
 	}
 	
-	public void updateDeporte(String nombre) {
+	public void updateDeporte(Deporte deporte) {
 		conBD = new ConexionDB();
-		try (Connection conexion = conBD.getConexion();) {
-			int id = existDeporte(nombre);
-			if(0<id) {
-				String sql = "UPDATE Deporte SET nombre = 'Futbol' WHERE id_deporte = ?";
-				PreparedStatement ps = conexion.prepareStatement(sql);
-				ps.setInt(1, id);
-				ps.executeUpdate();				
-			}
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "UPDATE Deporte SET nombre = ? WHERE id_deporte = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, deporte.getNombre());
+			ps.setInt(2, deporte.getId());
+			ps.executeUpdate();						
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
+	}
+	
+	public void deleteDeporte(Deporte deporte) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "DELETE FROM Deporte  WHERE id_deporte = ? AND nombre = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setInt(1, deporte.getId());
+			ps.setString(2, deporte.getNombre());
+			ps.executeUpdate();						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

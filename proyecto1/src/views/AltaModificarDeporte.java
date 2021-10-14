@@ -10,37 +10,43 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import config.Messages;
+import dao.DeporteDAO;
+import model.Deporte;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AltaModificarDeporte extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private ArrayList<String> selectedTableValues;
+	private String selectedId;
 	private JTextField txtNombre;
 	private JButton okButton;
+	private Deporte deporte;
+	private JButton cancelButton;
 
 	public AltaModificarDeporte() {
-		this.selectedTableValues = selectedTableValues;
 		setTitle(Messages.getString("index.appTitle") + " - " + Messages.getString("deporte.title"));
 		dibujar();
-		gestionarEventos1();
+		gestionarEventosAlta();
 	}
 
-	public AltaModificarDeporte(ArrayList<String> selectedTableValues) {
-		this.selectedTableValues = selectedTableValues;
+	public AltaModificarDeporte(String selectedId) {
+		this.selectedId = selectedId;
 		setTitle(Messages.getString("index.appTitle") + " - " + Messages.getString("deporte.title"));
+		deporte = new DeporteDAO().getDeporte(Integer.parseInt(selectedId));
 		dibujar();
 		fillForm();
-		gestionarEventos2();
+		gestionarEventosModificar();
 	}
 
 	private void fillForm() {
-		txtNombre.setText(selectedTableValues.get(1));
+		txtNombre.setText(deporte.getNombre());
 	}
 
 	private void dibujar() {
@@ -65,7 +71,6 @@ public class AltaModificarDeporte extends JDialog {
 
 		{
 			txtNombre = new JTextField();
-			System.out.println(selectedTableValues.size());
 			GridBagConstraints gbc_txtNombre = new GridBagConstraints();
 			gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
 			gbc_txtNombre.gridx = 1;
@@ -84,19 +89,41 @@ public class AltaModificarDeporte extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
-
-	private void gestionarEventos1() {
-		
+	private void gestionarEcentos() {
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 	}
 
-	private void gestionarEventos2() {
+	private void gestionarEventosAlta() {
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nombre = txtNombre.getText();
+				if(!nombre.equals(""))
+					new DeporteDAO().insertDeporte(nombre);
+				dispose();				
+			}
+		});
+	}
 
+	private void gestionarEventosModificar() {
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {				
+				if(!deporte.getNombre().equals(txtNombre.getText())) {
+					deporte.setNombre(txtNombre.getText());
+					new DeporteDAO().updateDeporte(deporte);
+				}
+				dispose();	
+			}
+		});
 	}
 
 }

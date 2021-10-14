@@ -26,6 +26,8 @@ import model.Participacion;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
@@ -40,11 +42,14 @@ import java.util.Locale;
 
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
-public class index extends JFrame {
+public class Index extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -62,12 +67,11 @@ public class index extends JFrame {
 	private JButton btnDarDeBaja;
 
 	public static void main(String[] args) throws IOException {
-		GetPropertyValues pv = new GetPropertyValues();
-		Locale.setDefault(pv.getLocale());
+		Locale.setDefault(new Locale(GetPropertyValues.getValor("language"),GetPropertyValues.getValor("country"))) ;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					index frame = new index();
+					Index frame = new Index();
 					frame.setVisible(true);			
 					
 				} catch (Exception e) {
@@ -77,24 +81,27 @@ public class index extends JFrame {
 		});
 	}
 
-	public index() {
+	public Index() {
 		setTitle(Messages.getString("index.appTitle"));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(index.class.getResource("/images/logo.png"))); //$NON-NLS-1$
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Index.class.getResource("/images/logo.png"))); //$NON-NLS-1$
 		dibujar();
 		gestionarEventos();
-		rellenarTabla("Deporte");
+		rellenarTabla();
 	}
 
-	private void rellenarTabla(String tabla) {
+	private void rellenarTabla() {
 		modelo = new DefaultTableModel() {
+			private static final long serialVersionUID = 1L;
+
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
 		table.setModel(modelo);
-		String[] headers;
+		String[] headers = new String[0];
+		String tabla = rdbtnSeleccionado.getText();
 		switch (tabla) {
-			case "Deporte":
+			case "Deportes":
 				headers = Deporte.campos();
 				modelo.setColumnIdentifiers(headers);
 				modelo.addRow(headers);
@@ -105,7 +112,7 @@ public class index extends JFrame {
 				}
 				break;
 	
-			case "Deportista":
+			case "Deportistas":
 				headers = Deportista.campos();
 				modelo.setColumnIdentifiers(headers);
 				modelo.addRow(headers);
@@ -115,7 +122,7 @@ public class index extends JFrame {
 					modelo.addRow(row);
 				}
 				break;
-			case "Equipo":
+			case "Equipos":
 				headers = Equipo.campos();
 				modelo.setColumnIdentifiers(headers);
 				modelo.addRow(headers);
@@ -125,7 +132,7 @@ public class index extends JFrame {
 					modelo.addRow(row);
 				}
 				break;
-			case "Evento":
+			case "Eventos":
 				headers = Evento.campos();
 				modelo.setColumnIdentifiers(headers);
 				modelo.addRow(headers);
@@ -135,7 +142,7 @@ public class index extends JFrame {
 					modelo.addRow(row);
 				}
 				break;
-			case "Olimpiada":
+			case "Olimpiadas":
 				headers = Olimpiada.campos();
 				modelo.setColumnIdentifiers(headers);
 				modelo.addRow(headers);
@@ -145,7 +152,7 @@ public class index extends JFrame {
 					modelo.addRow(row);
 				}
 				break;
-			case "Participacion":
+			case "Participaciones":
 				headers = Participacion.campos();
 				modelo.setColumnIdentifiers(headers);
 				modelo.addRow(headers);
@@ -159,7 +166,10 @@ public class index extends JFrame {
 			default:
 				break;
 		}
-
+		for (int i = 0; i < headers.length; i++) {
+			table.getColumnModel().getColumn(i).setPreferredWidth(100);
+		}
+		
 	}
 
 	private void dibujar() {
@@ -194,6 +204,8 @@ public class index extends JFrame {
 
 	private void createTable() {
 		table = new JTable();
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.gridheight = 4;
 		gbc_table.insets = new Insets(0, 0, 5, 5);
@@ -286,43 +298,43 @@ public class index extends JFrame {
 	private void gestionarEventos() {
 		rdbtnDeportes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rellenarTabla("Deporte");
 				rdbtnSeleccionado = rdbtnDeportes;
+				rellenarTabla();
 			}
 		});
 
 		rdbtnDeportistas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rellenarTabla("Deportista");
 				rdbtnSeleccionado = rdbtnDeportistas;
+				rellenarTabla();
 			}
 		});
 
 		rdbtnEquipos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rellenarTabla("Equipo");
 				rdbtnSeleccionado = rdbtnEquipos;
+				rellenarTabla();
 			}
 		});
 
 		rdbtnEventos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rellenarTabla("Evento");
 				rdbtnSeleccionado = rdbtnEventos;
+				rellenarTabla();
 			}
 		});
 
 		rdbtnOlimpiadas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rellenarTabla("Olimpiada");
 				rdbtnSeleccionado = rdbtnOlimpiadas;
+				rellenarTabla();
 			}
 		});
 
 		rdbtnParticipaciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rellenarTabla("Participacion");
 				rdbtnSeleccionado = rdbtnParticipaciones;
+				rellenarTabla();
 			}
 		});
 	
@@ -337,30 +349,53 @@ public class index extends JFrame {
 				altaModificar("modificar");
 			}
 		});
+		
+		btnDarDeBaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Hola");
+				int row = table.getSelectedRow();
+				if(row>0) {
+					String message = "¿Estás seguro de que deseas borrar el campo?";
+					int input = JOptionPane.showConfirmDialog(null, message,"WARNING", JOptionPane.YES_NO_OPTION);
+					if(input== JOptionPane.YES_OPTION) {
+						DeporteDAO dao = new DeporteDAO();
+						int id = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
+						Deporte d = dao.getDeporte(id);
+						dao.deleteDeporte(d);
+						rellenarTabla();
+					}
+				}
+			}
+		});
 	}
 
 	private void altaModificar(String modo) {
-		ArrayList<String> selectedTableValues = new ArrayList<String>();
 		String tabla = rdbtnSeleccionado.getText();
 		switch (tabla) {
 		case "Deportes":
+			AltaModificarDeporte dialog = null;
 			if(modo.equals("alta")) {	
-				AltaModificarDeporte dialog = new AltaModificarDeporte();
+				dialog = new AltaModificarDeporte();
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}else if(modo.equals("modificar")) {
 				int row = table.getSelectedRow();
 				if(row>0) {
-					for (int i = 0; i < table.getColumnCount(); i++) {
-						int column = i;
-						String value = table.getModel().getValueAt(row, column).toString();
-						selectedTableValues.add(value);
-					}
-					AltaModificarDeporte dialog = new AltaModificarDeporte(selectedTableValues);
+					String id = table.getModel().getValueAt(row, 0).toString();
+					dialog = new AltaModificarDeporte(id);
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				}
 			}
+			if(dialog != null) {
+				dialog.addWindowListener((WindowListener) new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+						rellenarTabla();
+					}
+				});				
+			}
+
 			break;
 
 		case "Deportistas":
