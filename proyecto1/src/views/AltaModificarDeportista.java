@@ -37,6 +37,7 @@ public class AltaModificarDeportista extends JDialog {
 	private Deportista deportista;
 
 	public AltaModificarDeportista() {
+		setTitle("GESTIÓN DE OLIMPIADAS - Dar de alta/Modificar deportista");
 		dibujar();
 		gestionarEventos();
 		gestionarEventosAlta();
@@ -52,7 +53,7 @@ public class AltaModificarDeportista extends JDialog {
 
 	private void fillForm() {
 		textFieldNombre.setText(deportista.getNombre());
-		if (deportista.getSexo().equals("M")) {
+		if (deportista.getSexo().equals("F")) {
 			rdbtnMujer.setSelected(true);
 		} else {
 			rdbtnHombre.setSelected(true);

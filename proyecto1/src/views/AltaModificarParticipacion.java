@@ -17,6 +17,7 @@ public class AltaModificarParticipacion extends JDialog {
 	private JButton okButton;
 
 	public AltaModificarParticipacion() {
+		setTitle("GESTIÓN DE OLIMPIADAS - Dar de alta/Modificar participación");
 		dibujar();
 	}
 

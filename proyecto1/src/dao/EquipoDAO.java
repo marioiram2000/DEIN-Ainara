@@ -54,4 +54,43 @@ public class EquipoDAO {
 		}	
 		return null;
 	}
+	
+	public void insertEquipo(Equipo equipo) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "insert into Equipo (nombre, iniciales) values (?, ?)";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, equipo.getNombre());
+			ps.setString(2, equipo.getIniciales());
+			ps.executeUpdate();				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateEquipo(Equipo equipo) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "UPDATE Equipo SET nombre = ?, iniciales = ? WHERE id_equipo = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, equipo.getNombre());
+			ps.setString(2, equipo.getIniciales());
+			ps.setInt(3, equipo.getId());
+			ps.executeUpdate();				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteDEquipo(int id) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "DELETE FROM Equipo  WHERE id_equipo = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -27,7 +27,7 @@ public class Deporte {
 
 	@Override
 	public String toString() {
-		return "Deporte [id=" + id + ", nombre=" + nombre + "]";
+		return nombre;
 	}
 
 	public int getId() {

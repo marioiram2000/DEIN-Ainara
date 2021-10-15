@@ -61,4 +61,17 @@ public class ParticipacionDAO {
 		}				
 		return null;
 	}
+	
+	public void deleteParticipacion(int id_deportista, int id_evento) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "DELETE FROM Participacion  WHERE id_evento = ? AND id_deportista = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setInt(1, id_evento);
+			ps.setInt(2, id_deportista);
+			ps.executeUpdate();						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

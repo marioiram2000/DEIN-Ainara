@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import config.ConexionDB;
 import model.Deporte;
+import model.Equipo;
 import model.Evento;
 import model.Olimpiada;
 
@@ -55,5 +56,46 @@ public class EventoDAO {
 			e.printStackTrace();
 		}				
 		return null;
+	}
+	
+	public void insertEvento(Evento evento) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "insert into Evento (nombre, id_olimpiada, id_deporte) values (?, ?, ?)";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, evento.getNombre());
+			ps.setInt(2, evento.getOlimpiada().getId());
+			ps.setInt(3, evento.getDeporte().getId());
+			ps.executeUpdate();				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateEvento(Evento evento) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "UPDATE Evento SET nombre = ?, id_olimpiada = ?, id_deporte = ? WHERE id_evento = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, evento.getNombre());
+			ps.setInt(2, evento.getOlimpiada().getId());
+			ps.setInt(3, evento.getDeporte().getId());
+			ps.setInt(3, evento.getId());
+			ps.executeUpdate();				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteEvento(int id) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "DELETE FROM Evento  WHERE id_evento = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

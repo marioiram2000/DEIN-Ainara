@@ -60,4 +60,47 @@ public class OlimpiadaDAO {
 		}				
 		return null;
 	}
+	
+	public void insertOlimpiada(Olimpiada olimpiada) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "insert into Olimpiada (nombre, anio, temporada, ciudad) values (?, ?, ?, ?)";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, olimpiada.getNombre());
+			ps.setInt(2, olimpiada.getAnio());
+			ps.setString(3, olimpiada.getTemporada());
+			ps.setString(4, olimpiada.getCiudad());
+			ps.executeUpdate();				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	public void updateOlimpiada(Olimpiada olimpiada) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "UPDATE Olimpiada SET nombre = ?, anio = ?, temporada = ?, ciudad = ? WHERE id_olimpiada = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, olimpiada.getNombre());
+			ps.setInt(2, olimpiada.getAnio());
+			ps.setString(3, olimpiada.getTemporada());
+			ps.setString(4, olimpiada.getCiudad());
+			ps.setInt(5, olimpiada.getId());
+			ps.executeUpdate();				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	public void deleteOlimpiada(int id) {
+		conBD = new ConexionDB();
+		try (Connection conexion = conBD.getConexion();) {			
+			String sql = "DELETE FROM Olimpiada WHERE id_olimpiada = ?";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

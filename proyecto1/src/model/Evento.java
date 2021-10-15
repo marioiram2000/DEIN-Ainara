@@ -25,7 +25,7 @@ public class Evento {
 	}
 	
 	public String[] getAll() {
-		String[] all = {id+"", nombre, olimpiada.getNombre(), deporte.getNombre()};
+		String[] all = {id+"", nombre, olimpiada.toString(), deporte.toString()};
 		return all;
 	}
 

@@ -97,13 +97,12 @@ public class DeporteDAO {
 		}	
 	}
 	
-	public void deleteDeporte(Deporte deporte) {
+	public void deleteDeporte(int id) {
 		conBD = new ConexionDB();
 		try (Connection conexion = conBD.getConexion();) {			
-			String sql = "DELETE FROM Deporte  WHERE id_deporte = ? AND nombre = ?";
+			String sql = "DELETE FROM Deporte  WHERE id_deporte = ?";
 			PreparedStatement ps = conexion.prepareStatement(sql);
-			ps.setInt(1, deporte.getId());
-			ps.setString(2, deporte.getNombre());
+			ps.setInt(1, id);
 			ps.executeUpdate();						
 		} catch (SQLException e) {
 			e.printStackTrace();

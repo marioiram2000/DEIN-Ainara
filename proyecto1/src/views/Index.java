@@ -167,7 +167,7 @@ public class Index extends JFrame {
 				break;
 		}
 		for (int i = 0; i < headers.length; i++) {
-			table.getColumnModel().getColumn(i).setPreferredWidth(100);
+			table.getColumnModel().getColumn(i).setPreferredWidth(140);
 		}
 		
 	}
@@ -352,16 +352,39 @@ public class Index extends JFrame {
 		
 		btnDarDeBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Hola");
 				int row = table.getSelectedRow();
 				if(row>0) {
 					String message = "¿Estás seguro de que deseas borrar el campo?";
 					int input = JOptionPane.showConfirmDialog(null, message,"WARNING", JOptionPane.YES_NO_OPTION);
 					if(input== JOptionPane.YES_OPTION) {
-						DeporteDAO dao = new DeporteDAO();
 						int id = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
-						Deporte d = dao.getDeporte(id);
-						dao.deleteDeporte(d);
+						String tabla = rdbtnSeleccionado.getText();
+						switch (tabla) {
+						case "Deportes":
+							new DeporteDAO().deleteDeporte(id);
+							break;
+
+						case "Deportistas":
+							new DeportistaDAO().deleteDeportista(id);
+							break;
+						case "Equipos":
+							new EquipoDAO().deleteDEquipo(id);
+							break;
+						case "Eventos":
+							new EventoDAO().deleteEvento(id);
+							break;
+						case "Olimpiadas":
+							new OlimpiadaDAO().deleteOlimpiada(id);
+							break;
+						case "Participaciones":
+							int id_deportista = id;
+							int id_evento = Integer.parseInt(table.getModel().getValueAt(row, 1).toString());
+							new ParticipacionDAO().deleteParticipacion(id_deportista, id_evento);
+							break;
+
+						default:
+							break;
+					}
 						rellenarTabla();
 					}
 				}
@@ -421,13 +444,73 @@ public class Index extends JFrame {
 			}
 			break;
 		case "Equipos":
-			
+			AltaModificarEquipo dialogEquipo = null;
+			if(modo.equals("alta")) {	
+				dialogEquipo = new AltaModificarEquipo();
+				dialogEquipo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialogEquipo.setVisible(true);
+			}else if(modo.equals("modificar")) {
+				int row = table.getSelectedRow();
+				if(row>0) {
+					String id = table.getModel().getValueAt(row, 0).toString();
+					dialogEquipo = new AltaModificarEquipo(id);
+					dialogEquipo.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialogEquipo.setVisible(true);
+				}
+			}
+			if(dialogEquipo != null) {
+				dialogEquipo.addWindowListener((WindowListener) new WindowAdapter() {
+					public void windowClosed(WindowEvent e) {
+						rellenarTabla();
+					}
+				});				
+			}
 			break;
 		case "Eventos":
-			
+			AltaModificarEvento dialogEvento = null;
+			if(modo.equals("alta")) {	
+				dialogEvento = new AltaModificarEvento();
+				dialogEvento.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialogEvento.setVisible(true);
+			}else if(modo.equals("modificar")) {
+				int row = table.getSelectedRow();
+				if(row>0) {
+					String id = table.getModel().getValueAt(row, 0).toString();
+					dialogEvento = new AltaModificarEvento(id);
+					dialogEvento.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialogEvento.setVisible(true);
+				}
+			}
+			if(dialogEvento != null) {
+				dialogEvento.addWindowListener((WindowListener) new WindowAdapter() {
+					public void windowClosed(WindowEvent e) {
+						rellenarTabla();
+					}
+				});				
+			}
 			break;
 		case "Olimpiadas":
-			
+			AltaModificarOlimpiada dialogOlimpiada = null;
+			if(modo.equals("alta")) {	
+				dialogOlimpiada = new AltaModificarOlimpiada();
+				dialogOlimpiada.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialogOlimpiada.setVisible(true);
+			}else if(modo.equals("modificar")) {
+				int row = table.getSelectedRow();
+				if(row>0) {
+					String id = table.getModel().getValueAt(row, 0).toString();
+					dialogOlimpiada = new AltaModificarOlimpiada(id);
+					dialogOlimpiada.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialogOlimpiada.setVisible(true);
+				}
+			}
+			if(dialogOlimpiada != null) {
+				dialogOlimpiada.addWindowListener((WindowListener) new WindowAdapter() {
+					public void windowClosed(WindowEvent e) {
+						rellenarTabla();
+					}
+				});				
+			}
 			break;
 		case "Participaciones":
 			

@@ -33,8 +33,7 @@ public class Olimpiada {
 
 	@Override
 	public String toString() {
-		return "Olimpiada [id=" + id + ", nombre=" + nombre + ", anio=" + anio + ", temporada=" + temporada
-				+ ", ciudad=" + ciudad + "]";
+		return ciudad+" "+anio+" "+temporada;
 	}
 
 	public int getId() {
