@@ -32,8 +32,7 @@ public class Deportista {
 
 	@Override
 	public String toString() {
-		return "Deportista [id=" + id + ", nombre=" + nombre + ", sexo=" + sexo + ", peso=" + peso + ", altura="
-				+ altura + "]";
+		return nombre;
 	}
 
 	public int getId() {

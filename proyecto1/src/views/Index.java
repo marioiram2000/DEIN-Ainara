@@ -513,7 +513,28 @@ public class Index extends JFrame {
 			}
 			break;
 		case "Participaciones":
-			
+			AltaModificarParticipacion dialogParticipacion = null;
+			if(modo.equals("alta")) {	
+				dialogParticipacion = new AltaModificarParticipacion();
+				dialogParticipacion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialogParticipacion.setVisible(true);
+			}else if(modo.equals("modificar")) {
+				int row = table.getSelectedRow();
+				if(row>0) {
+					String id_deportista = table.getModel().getValueAt(row, 0).toString();
+					String id_evento =  table.getModel().getValueAt(row, 1).toString();
+					dialogParticipacion = new AltaModificarParticipacion(id_deportista, id_evento);
+					dialogParticipacion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialogParticipacion.setVisible(true);
+				}
+			}
+			if(dialogParticipacion != null) {
+				dialogParticipacion.addWindowListener((WindowListener) new WindowAdapter() {
+					public void windowClosed(WindowEvent e) {
+						rellenarTabla();
+					}
+				});				
+			}
 			break;
 
 		default:

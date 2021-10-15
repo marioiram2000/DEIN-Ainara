@@ -31,8 +31,7 @@ public class Evento {
 
 	@Override
 	public String toString() {
-		return "Evento [evento=" + id + ", nombre=" + nombre + ", olimpiada=" + olimpiada + ", deporte=" + deporte
-				+ "]";
+		return nombre + " " + olimpiada + " " + deporte;
 	}
 
 	public int getId() {

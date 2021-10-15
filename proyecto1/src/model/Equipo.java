@@ -29,7 +29,7 @@ public class Equipo {
 
 	@Override
 	public String toString() {
-		return "Equipo [id=" + id + ", nombre=" + nombre + ", iniciales=" + iniciales + "]";
+		return nombre + " " + iniciales;
 	}
 
 	public int getId() {
