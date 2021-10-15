@@ -11,9 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dao.EventoDAO;
 import dao.OlimpiadaDAO;
-import model.Deporte;
 import model.Olimpiada;
 
 import java.awt.GridBagLayout;
@@ -22,11 +20,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
-import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
 
 public class AltaModificarOlimpiada extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton okButton;
 	private JButton cancelButton;
@@ -54,22 +52,23 @@ public class AltaModificarOlimpiada extends JDialog {
 		gestionarEventos();
 		gestionarEventosModificar();
 	}
+
 	private void fillForm() {
-		textFieldAnio.setText(olimpiada.getAnio()+"");
+		textFieldAnio.setText(olimpiada.getAnio() + "");
 		textFieldCiudad.setText(olimpiada.getCiudad());
 		comboBoxTemporada.setSelectedItem(olimpiada.getTemporada());
 	}
-	
+
 	private void dibujar() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[] { 0, 0, 0 };
+		gbl_contentPanel.rowHeights = new int[] { 0, 0, 0, 0 };
+		gbl_contentPanel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			lblAnio = new JLabel("Año:");
@@ -145,7 +144,7 @@ public class AltaModificarOlimpiada extends JDialog {
 			}
 		}
 	}
-	
+
 	private void gestionarEventos() {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -153,29 +152,29 @@ public class AltaModificarOlimpiada extends JDialog {
 			}
 		});
 	}
-	
+
 	private void gestionarEventosAlta() {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				olimpiada.setNombre(textFieldAnio.getText()+" "+(String) comboBoxTemporada.getSelectedItem());
+				olimpiada.setNombre(textFieldAnio.getText() + " " + (String) comboBoxTemporada.getSelectedItem());
 				olimpiada.setCiudad(textFieldCiudad.getText());
 				olimpiada.setAnio(Integer.parseInt(textFieldAnio.getText()));
 				olimpiada.setTemporada((String) comboBoxTemporada.getSelectedItem());
 				new OlimpiadaDAO().insertOlimpiada(olimpiada);
-				dispose();	
+				dispose();
 			}
 		});
 	}
-	
+
 	private void gestionarEventosModificar() {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				olimpiada.setNombre(textFieldAnio.getText()+" "+(String) comboBoxTemporada.getSelectedItem());
+				olimpiada.setNombre(textFieldAnio.getText() + " " + (String) comboBoxTemporada.getSelectedItem());
 				olimpiada.setCiudad(textFieldCiudad.getText());
 				olimpiada.setAnio(Integer.parseInt(textFieldAnio.getText()));
 				olimpiada.setTemporada((String) comboBoxTemporada.getSelectedItem());
 				new OlimpiadaDAO().updateOlimpiada(olimpiada);
-				dispose();	
+				dispose();
 			}
 		});
 	}

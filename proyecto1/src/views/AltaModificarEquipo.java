@@ -10,9 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dao.DeportistaDAO;
 import dao.EquipoDAO;
-import model.Deportista;
 import model.Equipo;
 
 import java.awt.GridBagLayout;
@@ -23,6 +21,7 @@ import javax.swing.JTextField;
 
 public class AltaModificarEquipo extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton okButton;
 	private JButton cancelButton;
@@ -39,7 +38,7 @@ public class AltaModificarEquipo extends JDialog {
 		gestionarEventos();
 		gestionarEventosAlta();
 	}
-	
+
 	public AltaModificarEquipo(String id) {
 		setTitle("GESTIÓN DE OLIMPIADAS - Dar de alta/Modificar equipo");
 		this.equipo = new EquipoDAO().getEquipo(Integer.parseInt(id));
@@ -51,19 +50,19 @@ public class AltaModificarEquipo extends JDialog {
 
 	private void fillForm() {
 		textFieldNombre.setText(equipo.getNombre());
-		textFieldIniciales.setText(equipo.getIniciales());		
+		textFieldIniciales.setText(equipo.getIniciales());
 	}
-	
+
 	private void dibujar() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[] { 0, 0, 0 };
+		gbl_contentPanel.rowHeights = new int[] { 0, 0, 0 };
+		gbl_contentPanel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			lblNombre = new JLabel("Nombre:");
@@ -119,7 +118,7 @@ public class AltaModificarEquipo extends JDialog {
 			}
 		}
 	}
-	
+
 	private void gestionarEventos() {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -127,15 +126,15 @@ public class AltaModificarEquipo extends JDialog {
 			}
 		});
 	}
-	
+
 	private void gestionarEventosAlta() {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				equipo.setNombre(textFieldNombre.getText());
 				equipo.setIniciales(textFieldIniciales.getText());
 				new EquipoDAO().insertEquipo(equipo);
-				dispose();	
+				dispose();
 			}
 		});
 
@@ -147,7 +146,7 @@ public class AltaModificarEquipo extends JDialog {
 				equipo.setNombre(textFieldNombre.getText());
 				equipo.setIniciales(textFieldIniciales.getText());
 				new EquipoDAO().updateEquipo(equipo);
-				dispose();	
+				dispose();
 			}
 		});
 

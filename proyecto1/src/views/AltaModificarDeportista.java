@@ -26,6 +26,7 @@ import javax.swing.JSpinner;
 
 public class AltaModificarDeportista extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldNombre;
 	private JRadioButton rdbtnMujer;
@@ -215,8 +216,8 @@ public class AltaModificarDeportista extends JDialog {
 				d.setAltura(Integer.parseInt(spinnerAltura.getValue().toString()));
 				d.setPeso(Integer.parseInt(spinnerPeso.getValue().toString()));
 				new DeportistaDAO().insertDeportista(d);
-				
-				dispose();	
+
+				dispose();
 			}
 		});
 
@@ -234,8 +235,8 @@ public class AltaModificarDeportista extends JDialog {
 				deportista.setAltura(Integer.parseInt(spinnerAltura.getValue().toString()));
 				deportista.setPeso(Integer.parseInt(spinnerPeso.getValue().toString()));
 				new DeportistaDAO().updateDeportista(deportista);
-				
-				dispose();	
+
+				dispose();
 			}
 		});
 

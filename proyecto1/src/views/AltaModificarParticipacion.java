@@ -12,17 +12,13 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import dao.DeporteDAO;
 import dao.DeportistaDAO;
 import dao.EquipoDAO;
 import dao.EventoDAO;
-import dao.OlimpiadaDAO;
 import dao.ParticipacionDAO;
-import model.Deporte;
 import model.Deportista;
 import model.Equipo;
 import model.Evento;
-import model.Olimpiada;
 import model.Participacion;
 
 import java.awt.GridBagLayout;
@@ -35,6 +31,7 @@ import javax.swing.JRadioButton;
 
 public class AltaModificarParticipacion extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton cancelButton;
 	private JButton okButton;
@@ -62,16 +59,20 @@ public class AltaModificarParticipacion extends JDialog {
 		gestionarEventos();
 		gestionarEventosAlta();
 	}
-	
-	public AltaModificarParticipacion(String id_deportista, String id_evento) {
+
+	public AltaModificarParticipacion(String id) {
 		setTitle("GESTIÓN DE OLIMPIADAS - Dar de alta/Modificar participación");
-		participacion = new ParticipacionDAO().getParticipacion(Integer.parseInt(id_deportista), Integer.parseInt(id_evento));
+		String id_deportista = id.split("_")[0];
+		String id_evento = id.split("_")[1];
+		participacion = new ParticipacionDAO().getParticipacion(Integer.parseInt(id_deportista),
+				Integer.parseInt(id_evento));
 		dibujar();
 		setCombos();
 		fillForm();
 		gestionarEventos();
 		gestionarEventosModificar();
 	}
+
 	private void setCombos() {
 		ArrayList<Deportista> deportistas = new DeportistaDAO().getDeportistas();
 		for (Deportista deportista : deportistas) {
@@ -86,22 +87,22 @@ public class AltaModificarParticipacion extends JDialog {
 			comboBoxEventos.addItem(evento);
 		}
 	}
-	
+
 	private void fillForm() {
 		comboBoxDeportistas.setSelectedItem(participacion.getDeportista());
 		comboBoxEquipos.setSelectedItem(participacion.getEquipo());
 		comboBoxEventos.setSelectedItem(participacion.getEvento());
 		spinnerEdad.setValue(participacion.getEdad());
-		if(participacion.getMedalla()== null) {
+		if (participacion.getMedalla() == null) {
 			rdbtnNan.setSelected(true);
-		}else if(participacion.getMedalla().equals("Oro")) {
+		} else if (participacion.getMedalla().equals("Oro")) {
 			rdbtnOro.setSelected(true);
-		}else if(participacion.getMedalla().equals("Plata")) {
+		} else if (participacion.getMedalla().equals("Plata")) {
 			rdbtnPlata.setSelected(true);
-		}else if(participacion.getMedalla().equals("Bronce")) {
+		} else if (participacion.getMedalla().equals("Bronce")) {
 			rdbtnBronce.setSelected(true);
 		}
-		
+
 	}
 
 	private void dibujar() {
@@ -110,10 +111,10 @@ public class AltaModificarParticipacion extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[] { 0, 0, 0 };
+		gbl_contentPanel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_contentPanel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			lblDeportista = new JLabel("Deportista:");
@@ -125,7 +126,7 @@ public class AltaModificarParticipacion extends JDialog {
 			contentPanel.add(lblDeportista, gbc_lblDeportista);
 		}
 		{
-			comboBoxDeportistas = new JComboBox();
+			comboBoxDeportistas = new JComboBox<Deportista>();
 			GridBagConstraints gbc_comboBoxDeportistas = new GridBagConstraints();
 			gbc_comboBoxDeportistas.insets = new Insets(0, 0, 5, 0);
 			gbc_comboBoxDeportistas.fill = GridBagConstraints.HORIZONTAL;
@@ -143,7 +144,7 @@ public class AltaModificarParticipacion extends JDialog {
 			contentPanel.add(lblEvento, gbc_lblEvento);
 		}
 		{
-			comboBoxEventos = new JComboBox();
+			comboBoxEventos = new JComboBox<Evento>();
 			GridBagConstraints gbc_comboBoxEventos = new GridBagConstraints();
 			gbc_comboBoxEventos.insets = new Insets(0, 0, 5, 0);
 			gbc_comboBoxEventos.fill = GridBagConstraints.HORIZONTAL;
@@ -161,7 +162,7 @@ public class AltaModificarParticipacion extends JDialog {
 			contentPanel.add(lblEquipo, gbc_lblEquipo);
 		}
 		{
-			comboBoxEquipos = new JComboBox();
+			comboBoxEquipos = new JComboBox<Equipo>();
 			GridBagConstraints gbc_comboBoxEquipos = new GridBagConstraints();
 			gbc_comboBoxEquipos.insets = new Insets(0, 0, 5, 0);
 			gbc_comboBoxEquipos.fill = GridBagConstraints.HORIZONTAL;
@@ -242,7 +243,7 @@ public class AltaModificarParticipacion extends JDialog {
 			}
 		}
 	}
-	
+
 	private void gestionarEventos() {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -250,7 +251,6 @@ public class AltaModificarParticipacion extends JDialog {
 			}
 		});
 	}
-	
 
 	private void gestionarEventosAlta() {
 		okButton.addActionListener(new ActionListener() {
@@ -259,21 +259,21 @@ public class AltaModificarParticipacion extends JDialog {
 				participacion.setEdad(Integer.parseInt(spinnerEdad.getValue().toString()));
 				participacion.setEquipo((Equipo) comboBoxEquipos.getSelectedItem());
 				participacion.setEvento((Evento) comboBoxEventos.getSelectedItem());
-				if(rdbtnBronce.isSelected()) {
+				if (rdbtnBronce.isSelected()) {
 					participacion.setMedalla("Bronce");
-				}else if (rdbtnPlata.isSelected()) {
+				} else if (rdbtnPlata.isSelected()) {
 					participacion.setMedalla("Plata");
-				}else if (rdbtnOro.isSelected()) {
+				} else if (rdbtnOro.isSelected()) {
 					participacion.setMedalla("Oro");
-				}else {
+				} else {
 					participacion.setMedalla(null);
 				}
 				new ParticipacionDAO().insertParticipacion(participacion);
-				dispose();	
+				dispose();
 			}
 		});
 	}
-	
+
 	private void gestionarEventosModificar() {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -281,17 +281,17 @@ public class AltaModificarParticipacion extends JDialog {
 				participacion.setEdad(Integer.parseInt(spinnerEdad.getValue().toString()));
 				participacion.setEquipo((Equipo) comboBoxEquipos.getSelectedItem());
 				participacion.setEvento((Evento) comboBoxEventos.getSelectedItem());
-				if(rdbtnBronce.isSelected()) {
+				if (rdbtnBronce.isSelected()) {
 					participacion.setMedalla("Bronce");
-				}else if (rdbtnPlata.isSelected()) {
+				} else if (rdbtnPlata.isSelected()) {
 					participacion.setMedalla("Plata");
-				}else if (rdbtnOro.isSelected()) {
+				} else if (rdbtnOro.isSelected()) {
 					participacion.setMedalla("Oro");
-				}else {
+				} else {
 					participacion.setMedalla(null);
 				}
 				new ParticipacionDAO().updateParticipacion(participacion);
-				dispose();	
+				dispose();
 			}
 		});
 	}

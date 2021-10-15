@@ -2,7 +2,6 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -23,8 +22,8 @@ import java.awt.event.ActionListener;
 
 public class AltaModificarDeporte extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private String selectedId;
 	private JTextField txtNombre;
 	private JButton okButton;
 	private Deporte deporte;
@@ -38,7 +37,6 @@ public class AltaModificarDeporte extends JDialog {
 	}
 
 	public AltaModificarDeporte(String selectedId) {
-		this.selectedId = selectedId;
 		setTitle(Messages.getString("index.appTitle") + " - " + Messages.getString("deporte.title"));
 		deporte = new DeporteDAO().getDeporte(Integer.parseInt(selectedId));
 		dibujar();
@@ -97,6 +95,7 @@ public class AltaModificarDeporte extends JDialog {
 			}
 		}
 	}
+
 	private void gestionarEventos() {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -109,20 +108,20 @@ public class AltaModificarDeporte extends JDialog {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombre = txtNombre.getText();
-				if(!nombre.equals(""))
+				if (!nombre.equals(""))
 					new DeporteDAO().insertDeporte(nombre);
-				dispose();				
+				dispose();
 			}
 		});
 	}
 
 	private void gestionarEventosModificar() {
 		okButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {				
+			public void actionPerformed(ActionEvent arg0) {
 				deporte.setNombre(txtNombre.getText());
 				new DeporteDAO().updateDeporte(deporte);
-				
-				dispose();	
+
+				dispose();
 			}
 		});
 	}

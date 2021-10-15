@@ -8,35 +8,29 @@ import java.util.ArrayList;
 
 import config.ConexionDB;
 import model.Deporte;
-import model.Evento;
-import model.Olimpiada;
 
 public class DeporteDAO {
-	
+
 	ConexionDB conBD;
 
 	public ArrayList<Deporte> getDeportes() {
 		conBD = new ConexionDB();
 		ArrayList<Deporte> deportes = new ArrayList<Deporte>();
-		try (Connection conexion = conBD.getConexion()){
+		try (Connection conexion = conBD.getConexion()) {
 			String sql = "SELECT id_deporte, nombre FROM Deporte";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			ArrayList<Integer> ids = new ArrayList<Integer>();
 			while (rs.next()) {
-				ids.add(rs.getInt("id_deporte"));
-			}
-			for (Integer id : ids) {
-				Deporte d = getDeporte(id);
+				Deporte d = new Deporte(rs.getInt("id_deporte"), rs.getString("nombre"));
 				deportes.add(d);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return deportes;
 	}
-	
+
 	public Deporte getDeporte(int id) {
 		conBD = new ConexionDB();
 		try (Connection conexion = conBD.getConexion();) {
@@ -49,7 +43,7 @@ public class DeporteDAO {
 			return d;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}				
+		}
 		return null;
 	}
 	/*
@@ -73,37 +67,37 @@ public class DeporteDAO {
 	public void insertDeporte(String nombre) {
 		conBD = new ConexionDB();
 		try (Connection conexion = conBD.getConexion();) {
-			
+
 			String sql = "insert into Deporte (nombre) values (?)";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.setString(1, nombre);
-			ps.executeUpdate();				
-			
+			ps.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
-	
+
 	public void updateDeporte(Deporte deporte) {
 		conBD = new ConexionDB();
-		try (Connection conexion = conBD.getConexion();) {			
+		try (Connection conexion = conBD.getConexion();) {
 			String sql = "UPDATE Deporte SET nombre = ? WHERE id_deporte = ?";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.setString(1, deporte.getNombre());
 			ps.setInt(2, deporte.getId());
-			ps.executeUpdate();						
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
-	
+
 	public void deleteDeporte(int id) {
 		conBD = new ConexionDB();
-		try (Connection conexion = conBD.getConexion();) {			
+		try (Connection conexion = conBD.getConexion();) {
 			String sql = "DELETE FROM Deporte  WHERE id_deporte = ?";
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ps.setInt(1, id);
-			ps.executeUpdate();						
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

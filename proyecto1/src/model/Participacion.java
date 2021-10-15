@@ -2,6 +2,7 @@ package model;
 
 public class Participacion {
 
+	private String id;
 	private Deportista deportista;
 	private Evento evento;
 	private Equipo equipo;
@@ -15,6 +16,7 @@ public class Participacion {
 		this.equipo = equipo;
 		this.edad = edad;
 		this.medalla = medalla;
+		this.id = deportista.getId()+"_"+evento.getId();
 	}
 
 	public Participacion() {
@@ -22,12 +24,12 @@ public class Participacion {
 	}
 	
 	public static String[] campos() {
-		String[] c = {"deportista", "evento", "equipo", "edad", "medalla"};
+		String[] c = {"id", "deportista", "evento", "equipo", "edad", "medalla"};
 		return c;
 	}
 	
 	public String[] getAll() {
-		String[] all = {deportista.getNombre(), evento.getNombre(), equipo.getNombre(), edad+"", medalla};
+		String[] all = {id, deportista.getNombre(), evento.getNombre(), equipo.getNombre(), edad+"", medalla};
 		return all;
 	}
 
@@ -75,6 +77,14 @@ public class Participacion {
 
 	public void setMedalla(String medalla) {
 		this.medalla = medalla;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

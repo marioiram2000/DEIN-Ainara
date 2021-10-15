@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dao.DeporteDAO;
-import dao.EquipoDAO;
 import dao.EventoDAO;
 import dao.OlimpiadaDAO;
 import model.Deporte;
@@ -24,11 +23,11 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 
 public class AltaModificarEvento extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton okButton;
 	private JButton cancelButton;
@@ -48,7 +47,7 @@ public class AltaModificarEvento extends JDialog {
 		gestionarEventos();
 		gestionarEventosAlta();
 	}
-	
+
 	public AltaModificarEvento(String id) {
 		setTitle("GESTIÓN DE OLIMPIADAS - Dar de alta/Modificar evento");
 		this.evento = new EventoDAO().getEvento(Integer.parseInt(id));
@@ -58,19 +57,19 @@ public class AltaModificarEvento extends JDialog {
 		gestionarEventos();
 		gestionarEventosModificar();
 	}
-	
+
 	private void setCombos() {
 		ArrayList<Olimpiada> olimpiadas = new OlimpiadaDAO().getOlimpiadas();
 		for (Olimpiada olimpiada : olimpiadas) {
-			comboBoxOlimpiadas.addItem(olimpiada);			
+			comboBoxOlimpiadas.addItem(olimpiada);
 		}
-		
+
 		ArrayList<Deporte> deportes = new DeporteDAO().getDeportes();
 		for (Deporte deporte : deportes) {
 			comboBoxDeportes.addItem(deporte);
 		}
 	}
-	
+
 	private void fillForm() {
 		textFieldNombre.setText(evento.getNombre());
 		comboBoxOlimpiadas.setSelectedItem(evento.getOlimpiada());
@@ -83,10 +82,10 @@ public class AltaModificarEvento extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[] { 0, 0, 0 };
+		gbl_contentPanel.rowHeights = new int[] { 0, 0, 0, 0 };
+		gbl_contentPanel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			lblNombre = new JLabel("Nombre:");
@@ -117,7 +116,7 @@ public class AltaModificarEvento extends JDialog {
 			contentPanel.add(lblOlimpiada, gbc_lblOlimpiada);
 		}
 		{
-			comboBoxOlimpiadas = new JComboBox();
+			comboBoxOlimpiadas = new JComboBox<Olimpiada>();
 			GridBagConstraints gbc_comboBoxOlimpiadas = new GridBagConstraints();
 			gbc_comboBoxOlimpiadas.insets = new Insets(0, 0, 5, 0);
 			gbc_comboBoxOlimpiadas.fill = GridBagConstraints.HORIZONTAL;
@@ -135,7 +134,7 @@ public class AltaModificarEvento extends JDialog {
 			contentPanel.add(lblDeporte, gbc_lblDeporte);
 		}
 		{
-			comboBoxDeportes = new JComboBox();
+			comboBoxDeportes = new JComboBox<Deporte>();
 			GridBagConstraints gbc_comboBoxDeportes = new GridBagConstraints();
 			gbc_comboBoxDeportes.fill = GridBagConstraints.HORIZONTAL;
 			gbc_comboBoxDeportes.gridx = 1;
@@ -159,7 +158,7 @@ public class AltaModificarEvento extends JDialog {
 			}
 		}
 	}
-	
+
 	private void gestionarEventos() {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -167,7 +166,7 @@ public class AltaModificarEvento extends JDialog {
 			}
 		});
 	}
-	
+
 	private void gestionarEventosAlta() {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -175,7 +174,7 @@ public class AltaModificarEvento extends JDialog {
 				evento.setDeporte((Deporte) comboBoxDeportes.getSelectedItem());
 				evento.setOlimpiada((Olimpiada) comboBoxOlimpiadas.getSelectedItem());
 				new EventoDAO().insertEvento(evento);
-				dispose();	
+				dispose();
 			}
 		});
 	}
@@ -187,7 +186,7 @@ public class AltaModificarEvento extends JDialog {
 				evento.setDeporte((Deporte) comboBoxDeportes.getSelectedItem());
 				evento.setOlimpiada((Olimpiada) comboBoxOlimpiadas.getSelectedItem());
 				new EventoDAO().updateEvento(evento);
-				dispose();	
+				dispose();
 			}
 		});
 	}
