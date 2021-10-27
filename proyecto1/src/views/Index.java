@@ -10,12 +10,14 @@ import javax.swing.table.DefaultTableModel;
 
 import config.GetPropertyValues;
 import config.Messages;
+
 import dao.DeporteDAO;
 import dao.DeportistaDAO;
 import dao.EquipoDAO;
 import dao.EventoDAO;
 import dao.OlimpiadaDAO;
 import dao.ParticipacionDAO;
+
 import model.Deporte;
 import model.Deportista;
 import model.Equipo;
@@ -23,28 +25,26 @@ import model.Evento;
 import model.Olimpiada;
 import model.Participacion;
 
-import javax.swing.JOptionPane;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-
-import javax.swing.JRadioButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JTable;
 import java.awt.Toolkit;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Locale;
-
-import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Locale;
+
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.ImageIcon;
