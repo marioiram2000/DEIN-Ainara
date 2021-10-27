@@ -6,4 +6,5 @@ module JavaFXEjercicios01 {
 
 	opens application to javafx.graphics, javafx.fxml;
 	opens controller to javafx.graphics, javafx.fxml;
+	opens modelo to javafx.base;
 }
