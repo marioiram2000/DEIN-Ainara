@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.util.TimeZone;
 
 public class ConexionDB {
-    private static Connection conexion;
+    private Connection conexion;
     
     public ConexionDB() {}
 
-    public static Connection getConexion() {
+    public Connection getConexion() {
     	try {
     		String host = PropertyReader.getProperty("host");
     		String baseDatos = PropertyReader.getProperty("baseDatos");

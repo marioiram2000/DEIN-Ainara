@@ -6,4 +6,7 @@ module proyecto2FX {
 	requires java.sql;
 
 	opens application to javafx.graphics, javafx.fxml;
+	opens controller to javafx.graphics, javafx.fxml;
+	opens controller.alumnos to javafx.graphics, javafx.fxml;
+	opens controller.libros to javafx.graphics, javafx.fxml;
 }
