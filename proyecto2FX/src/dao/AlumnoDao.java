@@ -13,7 +13,7 @@ public class AlumnoDao {
 	
 	private Connection conexion;
 	
-	public ArrayList<Alumno> selectAlumnos() {	
+	public ArrayList<Alumno> selectAlumnos() {
 		ArrayList<Alumno> alumnos = new ArrayList<>();
 		try {
 			conexion = new ConexionDB().getConexion();
@@ -21,7 +21,7 @@ public class AlumnoDao {
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Alumno a = new Alumno();
+				Alumno a = new Alumno(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"));
 				alumnos.add(a);
 			}
 			

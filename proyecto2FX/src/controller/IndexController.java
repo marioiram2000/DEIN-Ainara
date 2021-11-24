@@ -17,7 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 
-public class indexController implements Initializable{
+public class IndexController implements Initializable{
 	@FXML
 	private MenuItem miNuevoAlumno;
 	@FXML

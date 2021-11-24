@@ -15,7 +15,7 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity"
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0"
 	prefWidth="989.0" styleClass="gridContainer"
-	stylesheets="@styles/application.css"
+	stylesheets="@../../styles/application.css"
 	xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="controller.alumnos.verAlumnosController">
 	<columnConstraints>
@@ -41,7 +41,7 @@
 			prefWidth="200.0">
 			<children>
 				<Label styleClass="whiteLabel" text="Filtrar por DNI:" />
-				<TextField fx:id="filter">
+				<TextField fx:id="filter" text="">
 					<HBox.margin>
 						<Insets />
 					</HBox.margin>
@@ -51,13 +51,13 @@
 						<Insets left="20.0" />
 					</HBox.margin>
 				</Label>
-				<TextField fx:id="filter1" />
+				<TextField fx:id="filter1" text="" />
 				<Label styleClass="whiteLabel" text="Filtrar por apellidos:">
 					<HBox.margin>
 						<Insets left="20.0" />
 					</HBox.margin>
 				</Label>
-				<TextField fx:id="filter2" />
+				<TextField fx:id="filter2" text="" />
 			</children>
 			<padding>
 				<Insets left="30.0" />
