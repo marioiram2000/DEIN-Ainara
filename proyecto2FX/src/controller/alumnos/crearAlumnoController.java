@@ -53,7 +53,7 @@ public class crearAlumnoController implements Initializable{
 	    Alert alert = new Alert(Alert.AlertType.ERROR);
 	    alert.setHeaderText(null);
 	    alert.setTitle("Error");
-	    alert.setContentText("Ya existe un alumno con ese DNI");
+	    alert.setContentText("Ha habido algún error en la inserción de datos.");
 	    alert.showAndWait();
 	}
 

@@ -21,8 +21,20 @@ private Connection conexion;
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Libro a = new Libro();
-				libros.add(a);
+				boolean baja;
+				if(rs.getInt("baja") == 0) {
+					baja = false;
+				}else {
+					baja = true;
+				}
+				Libro libro = new Libro(
+						rs.getInt("codigo"),
+						rs.getString("titulo"),
+						rs.getString("autor"),
+						rs.getString("editorial"),
+						rs.getString("estado"),
+						baja);
+				libros.add(libro);
 			}
 			
 			conexion.close();

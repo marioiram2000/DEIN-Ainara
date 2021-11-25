@@ -69,6 +69,28 @@ public class Prestamo {
 		this.fecha_devolucion = fecha_devolucion;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id_prestamo;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Prestamo other = (Prestamo) obj;
+		if (id_prestamo != other.id_prestamo)
+			return false;
+		return true;
+	}
+
 	
 	
 }

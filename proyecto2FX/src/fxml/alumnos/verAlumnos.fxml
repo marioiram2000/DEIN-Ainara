@@ -46,11 +46,12 @@
 						<Insets />
 					</HBox.margin>
 				</TextField>
+				<!-- 
 				<Label styleClass="whiteLabel" text="Filtrar por nombre:">
 					<HBox.margin>
 						<Insets left="20.0" />
 					</HBox.margin>
-				</Label>
+				</Label>				
 				<TextField fx:id="filter1" text="" />
 				<Label styleClass="whiteLabel" text="Filtrar por apellidos:">
 					<HBox.margin>
@@ -58,6 +59,7 @@
 					</HBox.margin>
 				</Label>
 				<TextField fx:id="filter2" text="" />
+				 -->
 			</children>
 			<padding>
 				<Insets left="30.0" />
