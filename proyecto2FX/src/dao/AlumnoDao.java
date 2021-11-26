@@ -31,6 +31,26 @@ public class AlumnoDao {
 		}
 		return alumnos;
 	}
+	
+	public Alumno getAlumno(String dni) {
+		ArrayList<Alumno> alumnos = new ArrayList<>();
+		try {
+			conexion = new ConexionDB().getConexion();
+			String sql = "SELECT dni, nombre, apellido1, apellido2 FROM Alumno WHERE dni = ?;";
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, dni);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Alumno a = new Alumno(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"));
+				return a;
+			}
+			
+			conexion.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public boolean insert(Alumno alumno) {
 		try {

@@ -32,6 +32,7 @@ private Connection conexion;
 	}
 
 	public boolean insert(Prestamo prestamo) {
+		System.out.println(prestamo.toString());
 		try {
 			conexion = new ConexionDB().getConexion();
 			String sql = "INSERT INTO Prestamo (id_prestamo, dni_alumno, codigo_libro, fecha_prestamo) VALUES (?, ?, ?, ?)";
@@ -40,7 +41,7 @@ private Connection conexion;
 			ps.setString(2, prestamo.getAlumno().getDni());
 			ps.setInt(3, prestamo.getLibro().getCodigo());
 			ps.setDate(4, prestamo.getFecha_prestamo());
-			ps.executeUpdate();
+			//ps.executeUpdate();
 			conexion.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

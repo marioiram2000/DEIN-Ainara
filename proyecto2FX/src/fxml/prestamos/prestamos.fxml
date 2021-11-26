@@ -11,60 +11,89 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-      <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-    <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
-  </rowConstraints>
-   <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label text="DNI del alumno:" />
-            <TextField fx:id="tfDNI" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-         <children>
-            <Label text="Filtrar libros:" />
-            <TextField fx:id="filtroLibros" />
-         </children>
-      </HBox>
-      <TableView fx:id="tavleLibros" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-        <columns>
-          <TableColumn fx:id="colLibrosCodigo" prefWidth="75.0" text="CODIGO" />
-          <TableColumn fx:id="colLibrosTitulo" prefWidth="75.0" text="TITULO" />
-            <TableColumn fx:id="colLibrosAutor" prefWidth="75.0" text="AUTOR" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-         <GridPane.margin>
-            <Insets bottom="10.0" right="10.0" top="10.0" />
-         </GridPane.margin>
-      </TableView>
-      <Button fx:id="btnPrestar" mnemonicParsing="false" text="PRESTAR" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <TableView fx:id="tablePrestamos" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-        <columns>
-          <TableColumn prefWidth="75.0" text="PRESTAMO" />
-          <TableColumn prefWidth="75.0" text="AUTOR" />
-            <TableColumn prefWidth="75.0" text="LIBRO" />
-            <TableColumn prefWidth="75.0" text="FEHCA" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-         <padding>
-            <Insets bottom="10.0" top="10.0" />
-         </padding>
-      </TableView>
-   </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0"
+	prefWidth="989.0" xmlns="http://javafx.com/javafx/17"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.prestamos.prestamosController">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			prefWidth="100.0" />
+		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+			prefWidth="100.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints minHeight="30.0" prefHeight="30.0"
+			vgrow="NEVER" />
+		<RowConstraints minHeight="30.0" prefHeight="30.0"
+			vgrow="NEVER" />
+		<RowConstraints minHeight="10.0" prefHeight="30.0"
+			vgrow="SOMETIMES" />
+		<RowConstraints minHeight="40.0" prefHeight="40.0"
+			vgrow="NEVER" />
+	</rowConstraints>
+	<children>
+		<HBox alignment="CENTER_LEFT" prefHeight="100.0"
+			prefWidth="200.0">
+			<children>
+				<Label text="DNI del alumno:" />
+				<TextField fx:id="tfDNI" />
+			</children>
+		</HBox>
+		<HBox alignment="CENTER_LEFT" prefHeight="100.0"
+			prefWidth="200.0" GridPane.rowIndex="1">
+			<children>
+				<Label text="Filtrar libros:" />
+				<TextField fx:id="filtroLibros" />
+			</children>
+		</HBox>
+		<TableView fx:id="tableLibros" prefHeight="200.0"
+			prefWidth="200.0" GridPane.rowIndex="2">
+			<columns>
+				<TableColumn fx:id="colLibrosCodigo" prefWidth="75.0"
+					text="CODIGO" />
+				<TableColumn fx:id="colLibrosTitulo" prefWidth="75.0"
+					text="TITULO" />
+				<TableColumn fx:id="colLibrosAutor" prefWidth="75.0"
+					text="AUTOR" />
+			</columns>
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+			</columnResizePolicy>
+			<GridPane.margin>
+				<Insets bottom="10.0" right="10.0" top="10.0" />
+			</GridPane.margin>
+		</TableView>
+		<Button fx:id="btnPrestar" mnemonicParsing="false"
+			onAction="#prestar" text="PRESTAR" GridPane.halignment="CENTER"
+			GridPane.rowIndex="3" />
+		<TableView fx:id="tablePrestamos" prefHeight="200.0"
+			prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+			<columns>
+				<TableColumn prefWidth="75.0" text="PRESTAMO" fx:id="colPrestamosPrestamo"/>
+				<TableColumn prefWidth="75.0" text="ALUMNO" fx:id="colPrestamosAlumno"/>
+				<TableColumn prefWidth="75.0" text="LIBRO" fx:id="colPrestamosLibro"/>
+				<TableColumn prefWidth="75.0" text="FEHCA" fx:id="colPrestamosFecha"/>
+			</columns>
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+			</columnResizePolicy>
+			<GridPane.margin>
+				<Insets bottom="10.0" top="10.0" />
+			</GridPane.margin>
+		</TableView>
+		<HBox alignment="CENTER_LEFT" prefHeight="100.0"
+			prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+			<children>
+				<Label text="Filtrar prestamos:" />
+				<TextField fx:id="filtroPrestamos" />
+			</children>
+		</HBox>
+		<Button fx:id="btnDevolver" mnemonicParsing="false"
+			onAction="#devolver" text="Button" GridPane.columnIndex="1"
+			GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+	</children>
+	<padding>
+		<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+	</padding>
 </GridPane>

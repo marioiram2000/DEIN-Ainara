@@ -48,9 +48,19 @@
 					</items>
 				</Menu>
 				<Menu fx:id="mPrestamos" mnemonicParsing="false"
-					onAction="#verPrestamos" text="PRESTAMOS" />
+					text="PRESTAMOS">
+					<items>
+						<MenuItem fx:id="miPrestamos" mnemonicParsing="false"
+							onAction="#verPrestamos" text="Ver prestamos" />
+					</items>
+				</Menu>
 				<Menu fx:id="mHistorico" mnemonicParsing="false"
-					onAction="#verHistorico" text="HISTORICO" />
+					text="HISTORICO">
+					<items>
+						<MenuItem fx:id="miHistorico" mnemonicParsing="false"
+							onAction="#verHistorico" text="Ver historico" />
+					</items>
+				</Menu>
 			</menus>
 		</MenuBar>
 		<ImageView fitWidth="430.0" pickOnBounds="true"

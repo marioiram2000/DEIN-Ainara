@@ -25,8 +25,7 @@ public class Libro {
 
 	@Override
 	public String toString() {
-		return "Libro [codigo=" + codigo + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial
-				+ ", estado=" + estado + ", baja=" + baja + "]";
+		return titulo;
 	}
 
 	public int getCodigo() {
