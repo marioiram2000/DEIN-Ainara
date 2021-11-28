@@ -1,23 +1,21 @@
 package controller.alumnos;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import modelo.Alumno;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.AlumnoDao;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import modelo.Alumno;
-
-public class crearAlumnoController implements Initializable {
+public class modificarAlumnoController implements Initializable {
 	@FXML
 	private TextField textFieldDNI;
 	@FXML
@@ -29,26 +27,40 @@ public class crearAlumnoController implements Initializable {
 	@FXML
 	private Button button;
 
+	private Alumno alumno;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		if (alumno != null)
+			rellenarCampos();
 	}
 
 	// Event Listener on Button[#button].onAction
 	@FXML
-	public void nuevoAlumno(ActionEvent event) {
+	public void modificarAlumno(ActionEvent event) {
 		String dni = textFieldDNI.getText();
 		String nombre = textFieldNombre.getText();
 		String ap1 = textFieldAp1.getText();
 		String ap2 = textFieldAp2.getText();
 
 		Alumno alumno = new Alumno(dni, nombre, ap1, ap2);
-		if (new AlumnoDao().insert(alumno)) {
+		if (new AlumnoDao().update(alumno)) {
 			Stage stage = (Stage) button.getScene().getWindow();
 			stage.close();
 		} else {
 			mostrarAlertError();
 		}
+	}
+
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
+	}
+
+	private void rellenarCampos() {
+		textFieldDNI.setText(alumno.getDni());
+		textFieldNombre.setText(alumno.getNombre());
+		textFieldAp1.setText(alumno.getApellido1());
+		textFieldAp2.setText(alumno.getApellido2());
 	}
 
 	@FXML

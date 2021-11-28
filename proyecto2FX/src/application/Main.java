@@ -1,6 +1,7 @@
 package application;
 	
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import config.PropertyReader;
 import javafx.application.Application;
@@ -13,9 +14,11 @@ import javafx.scene.layout.GridPane;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		Locale.setDefault(new Locale(PropertyReader.getProperty("language"), PropertyReader.getProperty("country")));
+		Locale locale = new Locale(PropertyReader.getProperty("language"), PropertyReader.getProperty("country"));
+		Locale.setDefault(locale);
+		ResourceBundle bundle = ResourceBundle.getBundle("messages.messages");
 		try {
-			GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/index.fxml"));
+			GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/fxml/index.fxml"), bundle);
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/styles/application.css").toExternalForm());
 			primaryStage.setScene(scene);

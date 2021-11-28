@@ -22,11 +22,11 @@ public class Prestamo {
 		this.fecha_prestamo =  new java.sql.Date(new java.util.Date().getTime());
 		this.fecha_devolucion = null;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Prestamo [id_prestamo=" + id_prestamo + ", dni_alumno=" + alumno.getDni() + ", libro=" + libro.getCodigo()
-				+ ", fecha_prestamo=" + fecha_prestamo + "]";
+		return "Prestamo [id_prestamo=" + id_prestamo + ", alumno=" + alumno + ", libro=" + libro + ", fecha_prestamo="
+				+ fecha_prestamo + ", fecha_devolucion=" + fecha_devolucion + "]";
 	}
 
 	public int getId_prestamo() {

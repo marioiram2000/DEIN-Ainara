@@ -21,6 +21,11 @@ private Connection conexion;
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Prestamo a = new Prestamo();
+				a.setId_prestamo(rs.getInt("id_prestamo"));
+				a.setAlumno(new AlumnoDao().getAlumno(rs.getString("dni_alumno")));
+				a.setLibro(new LibroDao().getLibro(rs.getInt("codigo_libro")));
+				a.setFecha_prestamo(rs.getDate("fecha_prestamo"));
+				a.setFecha_devolucion(rs.getDate("fecha_devolucion"));
 				prestamos.add(a);
 			}
 			conexion.close();
@@ -32,6 +37,7 @@ private Connection conexion;
 
 	public boolean insert(Prestamo prestamo) {
 		try {
+			System.out.println(prestamo);
 			conexion = new ConexionDB().getConexion();
 			String sql = "INSERT INTO Historico_prestamo (id_prestamo, dni_alumno, codigo_libro, fecha_prestamo, fecha_devolucion) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement ps = conexion.prepareStatement(sql);
@@ -39,7 +45,7 @@ private Connection conexion;
 			ps.setString(2, prestamo.getAlumno().getDni());
 			ps.setInt(3, prestamo.getLibro().getCodigo());
 			ps.setDate(4, prestamo.getFecha_prestamo());
-			ps.setDate(5, new java.sql.Date(new java.util.Date().getTime()));
+			ps.setDate(5, prestamo.getFecha_devolucion());
 			ps.executeUpdate();
 			conexion.close();
 		} catch (SQLException e) {

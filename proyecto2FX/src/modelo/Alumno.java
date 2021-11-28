@@ -1,12 +1,16 @@
 package modelo;
 
-public class Alumno {
+import java.io.Serializable;
+
+public class Alumno implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String dni;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	
+
 	public Alumno() {
 		super();
 	}
@@ -80,6 +84,5 @@ public class Alumno {
 			return false;
 		return true;
 	}
-	
-	
+
 }

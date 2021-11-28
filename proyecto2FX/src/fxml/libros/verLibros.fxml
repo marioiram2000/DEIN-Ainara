@@ -16,7 +16,7 @@
 	<children>
 		<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS">
 			<children>
-				<Label styleClass="whiteLabel" text="Filtrar por codigo:" />
+				<Label styleClass="whiteLabel" text="%verLibros.filtrar" />
 				<TextField fx:id="filter" text="">
 					<HBox.margin>
 						<Insets />
@@ -29,12 +29,12 @@
 		</HBox>
 		<TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
 			<columns>
-				<TableColumn fx:id="colCodigo" prefWidth="75.0" text="CODIGO" />
-				<TableColumn fx:id="colTitulo" prefWidth="75.0" text="TITULO" />
-            <TableColumn fx:id="colAutor" prefWidth="75.0" text="AUTOR" />
-            <TableColumn fx:id="colEditorial" prefWidth="75.0" text="EDITORIAL" />
-            <TableColumn fx:id="colEstado" prefWidth="75.0" text="ESTADO" />
-            <TableColumn fx:id="colBaja" prefWidth="75.0" text="BAJA" />
+				<TableColumn fx:id="colCodigo" prefWidth="75.0" text="%verLibros.code" />
+				<TableColumn fx:id="colTitulo" prefWidth="75.0" text="%verLibros.title" />
+				<TableColumn fx:id="colAutor" prefWidth="75.0" text="%verLibros.autor" />
+				<TableColumn fx:id="colEditorial" prefWidth="75.0" text="%verLibros.editorial" />
+				<TableColumn fx:id="colEstado" prefWidth="75.0" text="%verLibros.estado" />
+				<TableColumn fx:id="colBaja" prefWidth="75.0" text="%verLibros.baja" />
 			</columns>
 			<columnResizePolicy>
 				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -45,8 +45,8 @@
 				<Cursor fx:constant="DEFAULT" />
 			</cursor>
 			<children>
-				<Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" styleClass="botonAgregar" text="Agregar libro" />
-				<Button fx:id="btnModificar" mnemonicParsing="false" onAction="#modificar" styleClass="botonModificar" text="Modificar libro" />
+				<Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" styleClass="botonAgregar" text="%verLibros.add" />
+				<Button fx:id="btnModificar" mnemonicParsing="false" onAction="#modificar" styleClass="botonModificar" text="%verLibros.update" />
 			</children>
 			<GridPane.margin>
 				<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -64,7 +64,7 @@
 	<padding>
 		<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
 	</padding>
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
+	<columnConstraints>
+		<ColumnConstraints />
+	</columnConstraints>
 </GridPane>

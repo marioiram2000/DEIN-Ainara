@@ -24,13 +24,13 @@
 		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 	</rowConstraints>
 	<children>
-		<Label text="Nuevo libro:" textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER" />
-		<Label text="Codigo:" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-		<Label text="Titulo:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-		<Label text="Autor:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-		<Label text="Editorial:" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-		<Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" text="Agregar" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-		<Label text="Estado:" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+		<Label text="%crearLibro.new" textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER" />
+		<Label text="%crearLibro.code" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+		<Label text="%crearLibro.title" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+		<Label text="%crearLibro.author" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+		<Label text="%crearLibro.editorial" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+		<Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" text="%crearLibro.add" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+		<Label text="%crearLibro.status" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
 		<ComboBox fx:id="comboBoxEstado" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="10.0" />
