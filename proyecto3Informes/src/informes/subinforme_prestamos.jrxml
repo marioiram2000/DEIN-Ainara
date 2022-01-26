@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subinforme_prestamos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65a780fc-4159-43f1-abe1-0b64aeed73f6">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Libros"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="id_libro" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select * from Historico_prestamo where codigo_libro = $P{id_libro}]]>
+	</queryString>
+	<field name="id_prestamo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_prestamo"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_prestamo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<field name="dni_alumno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni_alumno"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni_alumno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<field name="codigo_libro" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="codigo_libro"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo_libro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<field name="fecha_prestamo" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_prestamo"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_prestamo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<field name="fecha_devolucion" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_devolucion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_devolucion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Historico_prestamo"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="13">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="-20" y="-20" width="100" height="30" uuid="d43684b7-c24c-471f-b201-b09a25d5391a"/>
+				<text><![CDATA[ID prestamo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="-20" width="100" height="30" uuid="c2c85a58-5bb0-4085-81cc-4d2573df6525"/>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="-20" width="100" height="30" uuid="92b85545-0bb1-4dd5-9910-a2c82751f985"/>
+				<text><![CDATA[ISBN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="-20" width="110" height="30" uuid="bd02ae65-3dd1-4445-b33c-66c55e332c83"/>
+				<text><![CDATA[Fecha del prestamo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="-20" width="100" height="30" uuid="393e27d1-d3d5-4692-a721-d1ef76a0f102"/>
+				<text><![CDATA[Fecha de devolución]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="-20" y="0" width="100" height="30" uuid="251ff8d7-1283-4d69-898f-1986831c37f7"/>
+				<textFieldExpression><![CDATA[$F{id_prestamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="30" uuid="ef3b8caa-e11d-4211-9c80-c951e3922d3f"/>
+				<textFieldExpression><![CDATA[$F{dni_alumno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="f6892b41-cdde-440b-8df1-dd259f4b2737"/>
+				<textFieldExpression><![CDATA[$F{codigo_libro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="100" height="30" uuid="03d9bd8f-0164-45e9-91b1-6dd9bb07e592"/>
+				<textFieldExpression><![CDATA[$F{fecha_prestamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="100" height="30" uuid="ecd58845-c171-454d-804a-5fe3016260d5"/>
+				<textFieldExpression><![CDATA[$F{fecha_devolucion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

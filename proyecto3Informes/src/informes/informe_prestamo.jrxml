@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informe_prestamo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26468186-b607-4f54-a754-d1efae551d03">
+	<parameter name="Alumno" class="modelo.Alumno"/>
+	<parameter name="Libro" class="modelo.Libro"/>
+	<parameter name="Prestamo" class="modelo.Prestamo"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="79" uuid="b8493816-7a82-4da3-bba6-42e9d8c00cc4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="37"/>
+				</textElement>
+				<text><![CDATA[PRESTAMO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="0" width="100" height="14" uuid="28f76ed3-25dd-4521-a165-139fc7f8637f"/>
+				<textFieldExpression><![CDATA[$P{Prestamo}.getFecha_prestamo()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="300" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="50" width="70" height="30" uuid="05852f83-92f6-41f1-91b8-e89e39eccdef">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="50" width="100" height="30" uuid="ba64146c-3479-4940-bbe5-9554e43e984d">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{Alumno}.getNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="80" width="70" height="30" uuid="8f02f36e-4b1e-4961-83c6-78ebf5a736f1"/>
+				<text><![CDATA[Apellidos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="80" width="100" height="30" uuid="73e587ef-1772-4855-8cc0-df28c23f91cc"/>
+				<textFieldExpression><![CDATA[$P{Alumno}.getApellido1()+" "+$P{Alumno}.getApellido2()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="110" width="70" height="30" uuid="dfe3b524-cf91-44c3-8592-3de7146caa04"/>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="110" width="100" height="30" uuid="807d040a-165d-4a48-a280-388165f779f8"/>
+				<textFieldExpression><![CDATA[$P{Alumno}.getDni()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="50" width="70" height="30" uuid="bf89e5e6-8ef4-4f5c-8f7e-75e7b342e3bc"/>
+				<text><![CDATA[Código:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="50" width="100" height="30" uuid="5dcf8553-ed3f-422a-826e-538520483ce2"/>
+				<textFieldExpression><![CDATA[$P{Libro}.getCodigo()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="80" width="70" height="30" uuid="d7b63d8a-d8cf-41d2-9d79-56bca38bdead"/>
+				<text><![CDATA[Título:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="80" width="100" height="30" uuid="3eee563b-b22a-4c38-9fe6-d8b829059983"/>
+				<textFieldExpression><![CDATA[$P{Libro}.getTitulo()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="110" width="70" height="30" uuid="6bcbce1a-9e4b-4775-930b-b484ccd70200"/>
+				<text><![CDATA[Autor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="110" width="100" height="30" uuid="abe9e720-5817-48e2-888c-cb0340ad671b"/>
+				<textFieldExpression><![CDATA[$P{Libro}.getAutor()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="140" width="70" height="30" uuid="8c4b94cc-e24c-4b83-ac28-16ce0f223038"/>
+				<text><![CDATA[Editorial:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="140" width="100" height="30" uuid="0081a9d8-f48c-4ca1-b8d2-dd5d4c17e744"/>
+				<textFieldExpression><![CDATA[$P{Libro}.getEditorial()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="170" width="70" height="30" uuid="ccc68b59-41bf-433a-adc4-02f8e483e95b"/>
+				<text><![CDATA[Estado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="170" width="100" height="30" uuid="2ed20605-a780-4a48-83e2-1f62d658a070"/>
+				<textFieldExpression><![CDATA[$P{Libro}.getEstado()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="30" uuid="a672fd97-1639-4c4a-82be-494bd8f3f09c"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font size="19" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Alumno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="20" width="100" height="30" uuid="b4948b70-1468-4e56-9c3e-2e9040bd4bd7"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font size="19" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Libro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="260" width="340" height="30" uuid="f2fa5c2f-b9da-47a9-b164-266ef31da635"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font size="19" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha límite de devolución:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="340" y="260" width="100" height="30" uuid="83a2edbb-2fe5-4892-95eb-628f7a864a94"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date().getTime()+ (15 * 24 * 60 * 60 * 1000))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
