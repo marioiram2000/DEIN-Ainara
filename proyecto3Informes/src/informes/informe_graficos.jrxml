@@ -18,7 +18,7 @@
 	</style>
 	<subDataset name="PieChartDataset" uuid="39581794-7f4c-48d6-8f6a-b421776f515c"/>
 	<queryString>
-		<![CDATA[select * from Libro]]>
+		<![CDATA[select * from Libro limit 1]]>
 	</queryString>
 	<field name="codigo" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
@@ -61,11 +61,19 @@
 					</textElement>
 					<text><![CDATA[Gráficos]]></text>
 				</staticText>
+				<image>
+					<reportElement x="10" y="1" width="80" height="39" uuid="378647d2-eac1-46fb-8797-a625373f07d2"/>
+					<imageExpression><![CDATA["libro.jpeg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="9" y="40" width="100" height="30" uuid="f8e492b4-4aea-44ce-a813-a72bbd2d403a"/>
+					<text><![CDATA[Biblioteca Orozco]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="23" splitType="Stretch">
+		<band height="34" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="227" y="22" width="326" height="1" uuid="1f2efa15-468e-4870-8f24-1cb1eda2034d"/>
 			</line>
@@ -75,28 +83,39 @@
 			</staticText>
 		</band>
 	</pageHeader>
-	<summary>
-		<band height="700" splitType="Stretch">
+	<detail>
+		<band height="593">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<subreport>
-				<reportElement x="213" y="10" width="342" height="230" uuid="5044c2c6-4e28-4500-bc2e-c3cb62bdea20"/>
+				<reportElement x="0" y="0" width="557" height="200" uuid="9e3d5a51-881e-4c2c-9dfe-f5f5cb5900bd"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["src/informes/subinforme_grafico_alumnos.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="2" y="290" width="556" height="170" uuid="b12dfd8a-ace4-49e8-9952-4424d334736b"/>
+				<reportElement x="-1" y="250" width="556" height="170" uuid="dcbe5a97-d8b1-491e-81c1-809718f311ae"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["src/informes/subinforme_grafico_barras.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="2" y="490" width="552" height="160" uuid="7b9557fa-25e4-4ce1-af42-0ec3bda14153"/>
+				<reportElement x="2" y="420" width="552" height="160" uuid="b264258c-ff43-4891-9fda-e999ab60e497"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["src/informes/subinforme_grafico_estado.jasper"]]></subreportExpression>
 			</subreport>
-			<image>
-				<reportElement x="-20" y="-31" width="256" height="250" uuid="b1ec6977-8f64-40d1-a7a8-89b2c6ab65f2"/>
-				<imageExpression><![CDATA["src/informes/flower1.png"]]></imageExpression>
-			</image>
 		</band>
-	</summary>
+	</detail>
+	<pageFooter>
+		<band height="55">
+			<textField>
+				<reportElement style="Column header" x="473" y="15" width="80" height="20" forecolor="#030303" uuid="407d4b55-3de8-41ef-b501-a06624735d35"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="15" width="234" height="30" uuid="6af60b85-4152-4661-9efa-ea7bbdb77685"/>
+				<text><![CDATA[Telefono: 945214788 Fax: 945214789]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
 </jasperReport>

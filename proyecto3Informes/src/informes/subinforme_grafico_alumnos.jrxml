@@ -25,7 +25,7 @@ group by Historico_prestamo.dni_alumno]]>
 		<band height="233" splitType="Stretch">
 			<bar3DChart>
 				<chart evaluationTime="Report">
-					<reportElement x="-10" y="30" width="330" height="203" uuid="a2f10d8d-25a0-41d8-bdbe-a84e1e277aa2"/>
+					<reportElement x="112" y="30" width="330" height="203" uuid="a2f10d8d-25a0-41d8-bdbe-a84e1e277aa2"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -51,7 +51,7 @@ group by Historico_prestamo.dni_alumno]]>
 				</bar3DPlot>
 			</bar3DChart>
 			<staticText>
-				<reportElement x="-20" y="0" width="340" height="30" uuid="2e5d0d5f-183c-4b07-a60e-d8ecf04a5b1b"/>
+				<reportElement x="107" y="0" width="340" height="30" uuid="2e5d0d5f-183c-4b07-a60e-d8ecf04a5b1b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="16"/>
 				</textElement>

@@ -134,7 +134,19 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="234" height="30" uuid="b97f527f-55f4-4c80-8125-bb489ac46114"/>
+				<text><![CDATA[Telefono: 945214788 Fax: 945214789]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="360" y="0" width="197" height="13" forecolor="#030303" uuid="e1837784-849f-4033-8e20-ef4934fd7fa0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

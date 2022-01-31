@@ -63,6 +63,10 @@
 				<reportElement x="0" y="0" width="110" height="103" uuid="f989ad15-b4a8-468f-a86e-ea479fbac5cf"/>
 				<imageExpression><![CDATA["src/informes/libro.jpeg"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="5" y="60" width="100" height="30" uuid="df4214de-28d3-497e-8b6a-4549c836328e"/>
+				<text><![CDATA[Biblioteca Orozco]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -162,6 +166,10 @@
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="170" y="0" width="234" height="13" forecolor="#FFFFFF" uuid="e55830e3-c4c0-492a-8325-89608c17a273"/>
+					<text><![CDATA[Telefono: 945214788 Fax: 945214789]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</pageFooter>
