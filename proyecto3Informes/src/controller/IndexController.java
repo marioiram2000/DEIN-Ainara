@@ -23,6 +23,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 
 public class IndexController implements Initializable {
@@ -203,7 +204,22 @@ public class IndexController implements Initializable {
 	// Event Listener on Menu[#miAyuda].onAction
 	@FXML
 	public void ayuda(ActionEvent event) {
-		System.out.println("ayuda");
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ayuda/VisorAyuda.fxml"));
+		Parent root;
+		try {
+			root = loader.load();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.setTitle("Ayuda");
+			stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+		}
 	}
 
 }
