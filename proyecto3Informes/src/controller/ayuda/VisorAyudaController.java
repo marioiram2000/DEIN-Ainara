@@ -25,20 +25,28 @@ public class VisorAyudaController implements Initializable {
 //Creamos el árbol del panel de la izquierda, el índice
 		TreeItem<Help> rItem = new TreeItem<Help>(new Help("Raiz", ""));
 		
-		TreeItem<Help> r1Item = new TreeItem<Help>(new Help("Tema1", "tema1.html"));
-		r1Item.getChildren().add(new TreeItem<Help>(new Help("Tema 1.1", "tema1-1.html")));
-		r1Item.getChildren().add(new TreeItem<Help>(new Help("Tema 1.2", "tema1-2.html")));
+		TreeItem<Help> r1Item = new TreeItem<Help>(new Help("Alumnos", "alumnos.html"));
 		rItem.getChildren().add(r1Item);
 		
-		TreeItem<Help> r2Item = new TreeItem<Help>(new Help("Tema2", "tema2.html"));
-		r2Item.getChildren().add(new TreeItem<Help>(new Help("Tema 2.1", "tema2-1.html")));
-		r2Item.getChildren().add(new TreeItem<Help>(new Help("Tema 2.2", "tema2-2.html")));
+		TreeItem<Help> r2Item = new TreeItem<Help>(new Help("Libros", "libros.html"));
 		rItem.getChildren().add(r2Item);
+		
+		TreeItem<Help> r3Item = new TreeItem<Help>(new Help("Prestamos", "prestamos.html"));
+		rItem.getChildren().add(r3Item);
+		
+		TreeItem<Help> r4Item = new TreeItem<Help>(new Help("Historico", "historico.html"));
+		rItem.getChildren().add(r4Item);
+		
+		TreeItem<Help> r5Item = new TreeItem<Help>(new Help("Informes", "informes.html"));
+		rItem.getChildren().add(r5Item);
+		
+		
+		
 		arbol.setRoot(rItem);
 		arbol.setShowRoot(false);
 //Mostramos el contenido inicial en el visor de la derecha
 		webEngine = visor.getEngine();
-		webEngine.load(getClass().getResource("/help/html/tema1.html").toExternalForm());
+		webEngine.load(getClass().getResource("/help/html/alumnos.html").toExternalForm());
 //Añadimos un evento para cambiar de html al pinchar en el árbol
 		arbol.setOnMouseClicked((EventHandler<? super MouseEvent>) new EventHandler<MouseEvent>() {
 			@Override
