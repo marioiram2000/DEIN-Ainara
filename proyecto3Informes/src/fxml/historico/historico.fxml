@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -35,7 +36,10 @@
 						<Insets left="40.0" />
 					</HBox.margin>
 				</Label>
-				<TextField fx:id="filterLibro" />
+				<TextField fx:id="filterLibro">
+               <tooltip>
+                  <Tooltip text="Filtrar por codigo de libro" />
+               </tooltip></TextField>
 			</children>
 		</HBox>
 		<TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">

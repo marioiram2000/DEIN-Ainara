@@ -8,68 +8,45 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="300.0" maxWidth="430.0" minHeight="300.0"
-	minWidth="430.0" prefHeight="300.0" prefWidth="430.0"
-	xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="controller.alumnos.crearAlumnoController">
+<GridPane maxHeight="300.0" maxWidth="430.0" minHeight="300.0" minWidth="430.0" prefHeight="300.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.alumnos.crearAlumnoController">
 	<columnConstraints>
-		<ColumnConstraints hgrow="SOMETIMES"
-			maxWidth="155.0" minWidth="10.0" prefWidth="126.0" />
-		<ColumnConstraints hgrow="ALWAYS"
-			maxWidth="1.7976931348623157E308" />
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="126.0" />
+		<ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
 	</columnConstraints>
 	<rowConstraints>
-		<RowConstraints minHeight="10.0" prefHeight="30.0"
-			vgrow="NEVER" />
-		<RowConstraints minHeight="10.0" prefHeight="30.0"
-			vgrow="SOMETIMES" />
-		<RowConstraints minHeight="10.0" prefHeight="30.0"
-			vgrow="SOMETIMES" />
-		<RowConstraints minHeight="10.0" prefHeight="30.0"
-			vgrow="SOMETIMES" />
-		<RowConstraints minHeight="10.0" prefHeight="30.0"
-			vgrow="SOMETIMES" />
-		<RowConstraints minHeight="10.0" prefHeight="30.0"
-			vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+		<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 	</rowConstraints>
 	<children>
-		<Label text="%crearAlumno.new" textAlignment="CENTER"
-			GridPane.columnSpan="2147483647" GridPane.halignment="CENTER"
-			GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER" />
-		<Label text="%crearAlumno.dni" textAlignment="RIGHT"
-			GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-		<Label text="%crearAlumno.name" GridPane.halignment="RIGHT"
-			GridPane.rowIndex="2" />
-		<Label text="%crearAlumno.ap1" GridPane.halignment="RIGHT"
-			GridPane.rowIndex="3" />
-		<Label text="%crearAlumno.ap2" GridPane.halignment="RIGHT"
-			GridPane.rowIndex="4" />
-		<TextField fx:id="textFieldDNI" prefHeight="200.0"
-			prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+		<Label text="%crearAlumno.new" textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="NEVER" />
+		<Label text="%crearAlumno.dni" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+		<Label text="%crearAlumno.name" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+		<Label text="%crearAlumno.ap1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+		<Label text="%crearAlumno.ap2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+		<TextField fx:id="textFieldDNI" prefHeight="200.0" prefWidth="200.0" promptText="Dni" GridPane.columnIndex="1" GridPane.rowIndex="1">
 			<GridPane.margin>
 				<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
 			</GridPane.margin>
 		</TextField>
-		<TextField fx:id="textFieldNombre" prefHeight="200.0"
-			prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+		<TextField fx:id="textFieldNombre" prefHeight="200.0" prefWidth="200.0" promptText="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="2">
 			<GridPane.margin>
 				<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
 			</GridPane.margin>
 		</TextField>
-		<TextField fx:id="textFieldAp1" prefHeight="200.0"
-			prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+		<TextField fx:id="textFieldAp1" prefHeight="200.0" prefWidth="200.0" promptText="apellido 1" GridPane.columnIndex="1" GridPane.rowIndex="3">
 			<GridPane.margin>
 				<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
 			</GridPane.margin>
 		</TextField>
-		<TextField fx:id="textFieldAp2" prefHeight="200.0"
-			prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+		<TextField fx:id="textFieldAp2" prefHeight="200.0" prefWidth="200.0" promptText="apellido 2" GridPane.columnIndex="1" GridPane.rowIndex="4">
 			<GridPane.margin>
 				<Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
 			</GridPane.margin>
 		</TextField>
-		<Button fx:id="button" mnemonicParsing="false" text="%crearAlumno.add"
-			GridPane.columnSpan="2147483647" GridPane.halignment="CENTER"
-			GridPane.rowIndex="5"  onAction="#nuevoAlumno" />
+		<Button fx:id="button" mnemonicParsing="false" onAction="#nuevoAlumno" text="%crearAlumno.add" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
 	</children>
 </GridPane>

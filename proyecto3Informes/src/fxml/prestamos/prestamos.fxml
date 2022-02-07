@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -26,13 +27,19 @@
 		<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
 			<children>
 				<Label text="%prestamos.dniFilter" />
-				<TextField fx:id="tfDNI" />
+				<TextField fx:id="tfDNI">
+               <tooltip>
+                  <Tooltip text="Filtrar por dni" />
+               </tooltip></TextField>
 			</children>
 		</HBox>
 		<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
 			<children>
 				<Label text="%prestamos.bookFilter" />
-				<TextField fx:id="filtroLibros" />
+				<TextField fx:id="filtroLibros">
+               <tooltip>
+                  <Tooltip text="Filtrar por cdigo de libro" />
+               </tooltip></TextField>
 			</children>
 		</HBox>
 		<TableView fx:id="tableLibros" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -66,7 +73,10 @@
 		<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
 			<children>
 				<Label text="%prestamos.loanFilter" />
-				<TextField fx:id="filtroPrestamos" />
+				<TextField fx:id="filtroPrestamos">
+               <tooltip>
+                  <Tooltip text="Filtrar por cdigo de libro" />
+               </tooltip></TextField>
 			</children>
 		</HBox>
 		<Button fx:id="btnDevolver" mnemonicParsing="false" onAction="#devolver" text="%prestamos.return" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />

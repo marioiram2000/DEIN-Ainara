@@ -4,7 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -12,6 +16,8 @@ import java.util.ResourceBundle;
 import config.ConexionDB;
 import javafx.event.ActionEvent;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -39,12 +45,21 @@ public class IndexController implements Initializable {
 	private Menu mPrestamos;
 	@FXML
 	private Menu mHistorico;
+	@FXML
+	private ImageView fondo;
 
 	private ResourceBundle bundle = ResourceBundle.getBundle("messages.messages");
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		try {
+			File fichero = new File("images/biblioteca.jpg");
+			InputStream image = (InputStream) new FileInputStream(fichero);
+			fondo.setImage(new Image(image));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	// Event Listener on MenuItem[#miNuevoAlumno].onAction

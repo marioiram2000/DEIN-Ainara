@@ -28,7 +28,7 @@
 		<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
 			<children>
 				<Label styleClass="whiteLabel" text="%verAlumnos.filter" />
-				<TextField fx:id="filter" text="">
+				<TextField fx:id="filter" promptText="filtro por dni" text="">
 					<HBox.margin>
 						<Insets />
 					</HBox.margin>
