@@ -61,7 +61,7 @@
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="110" height="103" uuid="f989ad15-b4a8-468f-a86e-ea479fbac5cf"/>
-				<imageExpression><![CDATA["src/informes/libro.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA["resources/images/libro.jpeg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="5" y="60" width="100" height="30" uuid="df4214de-28d3-497e-8b6a-4549c836328e"/>
@@ -113,7 +113,7 @@
 					<subreportParameterExpression><![CDATA[$F{codigo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["src/informes/subinforme_prestamos.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["resources/subinformes/subinforme_prestamos.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="30" uuid="756fd4d9-71fb-4aa3-9190-0fd7d6d80aa9"/>

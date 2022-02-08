@@ -88,7 +88,7 @@ ORDER BY fecha_prestamo DESC]]>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="557" height="95" backcolor="#000000" uuid="6c6ca4e1-17cd-4913-93d6-5e670ea9ae8a"/>
 				<staticText>
-					<reportElement style="Title" x="120" y="0" width="438" height="66" uuid="a2a2cac8-5a7d-4487-8c54-dab235ce4e21"/>
+					<reportElement style="Title" x="110" y="0" width="443" height="66" uuid="a2a2cac8-5a7d-4487-8c54-dab235ce4e21"/>
 					<textElement>
 						<font size="28" isBold="false"/>
 					</textElement>
@@ -104,7 +104,7 @@ ORDER BY fecha_prestamo DESC]]>
 				</staticText>
 				<image>
 					<reportElement x="10" y="9" width="70" height="64" uuid="ec77aa6c-d824-459d-ba83-da88dbfaf7dd"/>
-					<imageExpression><![CDATA["libro.jpeg"]]></imageExpression>
+					<imageExpression><![CDATA["resources/images/libro.jpeg"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement x="5" y="50" width="100" height="30" forecolor="#FFFFFF" backcolor="#030303" uuid="94a6e465-b9b9-4bdf-aadd-1e74bc4dd8d1"/>

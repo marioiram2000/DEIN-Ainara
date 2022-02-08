@@ -63,7 +63,7 @@
 				</staticText>
 				<image>
 					<reportElement x="10" y="1" width="80" height="39" uuid="378647d2-eac1-46fb-8797-a625373f07d2"/>
-					<imageExpression><![CDATA["libro.jpeg"]]></imageExpression>
+					<imageExpression><![CDATA["resources/images/libro.jpeg"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement x="9" y="40" width="100" height="30" uuid="f8e492b4-4aea-44ce-a813-a72bbd2d403a"/>
@@ -89,17 +89,17 @@
 			<subreport>
 				<reportElement x="0" y="0" width="557" height="200" uuid="9e3d5a51-881e-4c2c-9dfe-f5f5cb5900bd"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["src/informes/subinforme_grafico_alumnos.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["resources/subinformes/subinforme_grafico_alumnos.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
 				<reportElement x="-1" y="250" width="556" height="170" uuid="dcbe5a97-d8b1-491e-81c1-809718f311ae"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["src/informes/subinforme_grafico_barras.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["resources/subinformes/subinforme_grafico_barras.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
 				<reportElement x="2" y="420" width="552" height="160" uuid="b264258c-ff43-4891-9fda-e999ab60e497"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["src/informes/subinforme_grafico_estado.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["resources/subinformes/subinforme_grafico_estado.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
